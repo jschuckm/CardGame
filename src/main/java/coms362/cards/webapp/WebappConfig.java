@@ -1,4 +1,4 @@
-package coms362.cards.main;
+package coms362.cards.webapp;
 
 import coms362.cards.socket.ServletContextHolder;
 

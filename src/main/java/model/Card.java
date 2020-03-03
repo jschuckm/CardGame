@@ -1,6 +1,8 @@
-package coms362.cards.main;
+package model;
 
-public class Card {
+import cards.streams.JsMarshaller;
+
+public class Card implements JsMarshaller {
     private String suit;
     private int number;
     private int id;
@@ -51,4 +53,8 @@ public class Card {
     public void setNumber(int number) {
         this.number = number;
     }
+	public String marshal() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

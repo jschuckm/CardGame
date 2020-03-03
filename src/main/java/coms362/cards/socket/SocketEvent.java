@@ -5,10 +5,10 @@ import java.util.Map;
 
 import org.eclipse.jetty.util.ajax.JSON;
 
-public class Event {
+public class SocketEvent {
     Map map;
 
-    public Event(String message) {
+    public SocketEvent(String message) {
         JSON json = JSON.getDefault();
         try {
             map = (Map) json.parse(message);

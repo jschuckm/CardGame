@@ -2,6 +2,8 @@ package coms362.cards.socket;
 
 import org.eclipse.jetty.servlet.ServletHolder;
 
+import coms362.cards.webapp.CardServlet;
+
 public class ServletContextHolder {
     private ServletHolder servletHolder;
     private String context;
