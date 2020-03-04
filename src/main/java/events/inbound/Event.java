@@ -1,5 +1,6 @@
 package events.inbound;
 
-public class Event {
+
+public interface Event {
 
 }

@@ -4,11 +4,11 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-import cards.streams.InBoundQueue;
-import cards.streams.RemoteTableGateway;
-import coms362.cards.fiftytwo.FiftyTwo;
+import coms362.cards.app.FiftyTwo;
 import coms362.cards.socket.CardSocketCreator;
 import coms362.cards.socket.ServletContextHolder;
+import coms362.cards.streams.InBoundQueue;
+import coms362.cards.streams.RemoteTableGateway;
 
 /**
  * bring up the 
@@ -44,6 +44,7 @@ public class Bootstrap {
         while (! RemoteTableGateway.getInstance().isReady() && i-- > 0){
         	Thread.sleep(1000);
         }
+        
         FiftyTwo app = new FiftyTwo(asyncQ, RemoteTableGateway.getInstance());
         app.run();
         

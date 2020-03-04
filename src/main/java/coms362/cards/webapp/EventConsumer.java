@@ -1,10 +1,10 @@
 package coms362.cards.webapp;
 
-import cards.streams.InBoundQueue;
-import cards.streams.RemoteTableGateway;
 import coms362.cards.socket.CardSocket;
 import coms362.cards.socket.CardSocketListener;
 import coms362.cards.socket.SocketEvent;
+import coms362.cards.streams.InBoundQueue;
+import coms362.cards.streams.RemoteTableGateway;
 import events.inbound.CardEvent;
 import events.inbound.DealEvent;
 import events.inbound.Event;

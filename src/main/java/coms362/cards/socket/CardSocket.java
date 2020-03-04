@@ -9,7 +9,7 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
-import cards.streams.RemoteTableGateway;
+import coms362.cards.streams.RemoteTableGateway;
 
 @WebSocket
 public class CardSocket {

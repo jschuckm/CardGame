@@ -1,6 +1,11 @@
 package events.inbound;
 
-public class CardEvent extends Event {
+import coms362.cards.fiftytwo.Move;
+import coms362.cards.fiftytwo.Rules;
+import model.Player;
+import model.Table;
+
+public class CardEvent implements Event {
 	
 	private String id;
 

@@ -1,6 +1,6 @@
 package events.remote;
 
-import cards.streams.Marshalls;
+import coms362.cards.streams.Marshalls;
 import model.Location;
 import model.Pile;
 

@@ -1,9 +1,10 @@
 package model;
 
-import cards.streams.JsMarshaller;
+public class Card {
 
-public class Card implements JsMarshaller {
-    private String suit;
+	public static final String suits[] = {"h", "s", "d", "c"};
+
+	private String suit;
     private int number;
     private int id;
     private int x;
@@ -53,8 +54,5 @@ public class Card implements JsMarshaller {
     public void setNumber(int number) {
         this.number = number;
     }
-	public String marshal() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }
