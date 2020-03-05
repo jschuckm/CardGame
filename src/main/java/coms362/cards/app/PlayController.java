@@ -23,13 +23,15 @@ public class PlayController {
 		this.rules = rules; 
 	}
 	
-	public void play(Table table, Player player, List<View> views){
+	public void play(Table table, 
+			Player player, List<View> views){
 		Event nextE;
 		View p1View = views.get(0);
 		try {
 		
 			while ((nextE = inQ.take()) != null){
-				Move move = rules.eval(nextE, table, player);
+				Move move = rules
+					.eval(nextE, table, player);
 				table.apply(move);
 				p1View.apply(move);
 			}

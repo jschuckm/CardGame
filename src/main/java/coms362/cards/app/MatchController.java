@@ -18,7 +18,8 @@ import model.Table;
 public class MatchController {
 	
 	private RemoteTableGateway remote;
-	private List<View> views = new ArrayList<View>();
+	private List<View> views = 
+			new ArrayList<View>();
 	private Table table;
 	private Rules rules;
 	private InBoundQueue inQ;
