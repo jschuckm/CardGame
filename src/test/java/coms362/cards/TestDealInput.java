@@ -24,13 +24,18 @@ import model.TableBase;
 
 public class TestDealInput {
 
+	static final long expectedSig = 4116877291L;
+	
 	@Test	
 	public void test() {
-		InBoundQueue inQ = new InBoundQueue();		
+		//set up game and match resources to provision play loop 
+		InBoundQueue inQ = new InBoundQueue();
+		//pre-load the input stream with the input for this test
 		inQ.add(new DealEvent());
-		inQ.add(new EndPlay());
+		inQ.add(new EndPlay()); //artifice to stop the test
 		
 		List<View> views = new ArrayList<View>();
+		//we keep a reference to the concrete type for later
 		LoggingView  p1View = new LoggingView();
 		views.add(p1View); 
 
@@ -44,6 +49,7 @@ public class TestDealInput {
 		PlayController mainloop = new PlayController(inQ, rules);
 		mainloop.play(table, player, views);
 		
+		
 		CRC32 sig = new CRC32();
 		String log = p1View.getLog();
 		System.out.println(log);
@@ -51,7 +57,7 @@ public class TestDealInput {
 		long sValue = sig.getValue();
 		System.out.println(sValue);
 		
-		assertEquals(4116877291L, sValue);
+		assertEquals(expectedSig, sValue);
 		
 	}
 

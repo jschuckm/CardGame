@@ -7,15 +7,20 @@ import java.util.List;
 import coms362.cards.streams.Marshalls;
 import coms362.cards.test.control.TestLogger;
 
-public class LoggingView implements View, TestLogger {
+public class LoggingView 
+implements View, TestLogger 
+{
 
-	public List<String> log = new ArrayList<String>();
+	public List<String> log 
+		= new ArrayList<String>();
 	
 	public void apply(Move move) {
 		move.apply(this);
 		}
 
-	public void send(Marshalls event) throws IOException {
+	public void send(Marshalls event) 
+			throws IOException 
+	{
 		log.add(event.stringify());	
 	}
 
