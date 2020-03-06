@@ -14,5 +14,7 @@ public interface Table {
 	void removeFromPile(String string, Card c);
 	void addToPile(String string, Card c);
 	int addToScore(Player p, int i);
+	boolean isMatchOver();
+	void setMatchOver(boolean over);
 	Random getRandom();
 }

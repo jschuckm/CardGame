@@ -1,20 +1,17 @@
-package coms362.cards.fiftytwo;
+package model;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import model.Card;
-import model.Pile;
-import model.Player;
-import model.Table;
+import coms362.cards.fiftytwo.Move;
 
 public class TableBase implements Table {
 	
 	private Map<String,Pile> piles = new HashMap<String,Pile>();
 	private Map<Integer, Player> players = new HashMap<Integer, Player>();
 	private Random rng = new Random();
-	
+	private boolean matchOver = false;
 	public void addPile(Pile pile) {
 		piles.put(pile.getName(), pile);
 	}
@@ -55,6 +52,15 @@ public class TableBase implements Table {
 
 	public Random getRandom() {
 		return rng;
+	}
+
+	public boolean isMatchOver() {
+		return matchOver;
+	}
+
+	public void setMatchOver(boolean over) {
+		matchOver = over;
+		
 	}
 
 

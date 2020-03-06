@@ -19,4 +19,8 @@ public class CreateRemote implements Marshalls{
 		);
 
 	}
+
+	public String stringify() {
+		return "CreateRemote Card id="+c.getId();
+	}
 }

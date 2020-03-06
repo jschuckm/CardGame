@@ -24,4 +24,10 @@ public class CreatePile implements Marshalls {
 			
 	}
 
+	public String stringify() {
+		return "CreatePile p="+p.getName();
+	}
+	
+	
+
 }

@@ -13,8 +13,10 @@ public class PickupRules implements Rules {
 	public Move eval(Event nextE, Table table, Player player) {
 		if (nextE instanceof CardEvent)
 			return eval((CardEvent) nextE, table, player);
-		else 
+		else if (nextE instanceof DealEvent)
 			return eval((DealEvent) nextE, table, player);
+		else
+			return new EndPlayMove();
 	}
 	
 	//TODO: find better way to lookup pile.

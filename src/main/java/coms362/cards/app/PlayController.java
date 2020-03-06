@@ -29,7 +29,10 @@ public class PlayController {
 		View p1View = views.get(0);
 		try {
 		
-			while ((nextE = inQ.take()) != null){
+			while (
+				! table.isMatchOver()
+				&& (nextE = inQ.take()) != null
+			){
 				Move move = rules
 					.eval(nextE, table, player);
 				table.apply(move);
