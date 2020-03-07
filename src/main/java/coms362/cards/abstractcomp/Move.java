@@ -1,6 +1,4 @@
-package coms362.cards.fiftytwo;
-
-import model.Table;
+package coms362.cards.abstractcomp;
 
 public interface Move {
 	public void apply(Table table);

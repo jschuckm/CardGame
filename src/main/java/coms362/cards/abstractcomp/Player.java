@@ -1,4 +1,4 @@
-package model;
+package coms362.cards.abstractcomp;
 
 public interface Player {
 	

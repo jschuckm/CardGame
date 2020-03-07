@@ -8,18 +8,18 @@ import java.util.zip.CRC32;
 
 import org.junit.Test;
 
+import coms362.cards.abstractcomp.Player;
+import coms362.cards.abstractcomp.Rules;
+import coms362.cards.abstractcomp.Table;
+import coms362.cards.abstractcomp.View;
 import coms362.cards.app.PlayController;
 import coms362.cards.fiftytwo.LoggingView;
 import coms362.cards.fiftytwo.PickupInitCmd;
 import coms362.cards.fiftytwo.PickupPlayer;
 import coms362.cards.fiftytwo.PickupRules;
-import coms362.cards.fiftytwo.Rules;
-import coms362.cards.fiftytwo.View;
 import coms362.cards.streams.InBoundQueue;
 import events.inbound.DealEvent;
 import events.inbound.EndPlay;
-import model.Player;
-import model.Table;
 import model.TableBase;
 
 public class TestDealInput {

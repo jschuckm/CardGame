@@ -1,6 +1,6 @@
 package coms362.cards.fiftytwo;
 
-import model.Player;
+import coms362.cards.abstractcomp.Player;
 
 public class PickupPlayer implements Player {
 

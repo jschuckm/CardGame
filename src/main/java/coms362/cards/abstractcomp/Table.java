@@ -1,8 +1,9 @@
-package model;
+package coms362.cards.abstractcomp;
 
 import java.util.Random;
 
-import coms362.cards.fiftytwo.Move;
+import model.Card;
+import model.Pile;
 
 public interface Table {
 

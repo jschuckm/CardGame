@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import coms362.cards.abstractcomp.Move;
+import coms362.cards.abstractcomp.View;
 import coms362.cards.streams.Marshalls;
 import coms362.cards.test.control.TestLogger;
 

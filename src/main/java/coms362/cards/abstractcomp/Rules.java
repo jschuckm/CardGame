@@ -1,9 +1,6 @@
-package coms362.cards.fiftytwo;
+package coms362.cards.abstractcomp;
 
-import events.inbound.CardEvent;
 import events.inbound.Event;
-import model.Player;
-import model.Table;
 
 public interface Rules {
 

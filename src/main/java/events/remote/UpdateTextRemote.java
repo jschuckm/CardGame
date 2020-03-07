@@ -1,7 +1,7 @@
 package events.remote;
 
+import coms362.cards.abstractcomp.Player;
 import coms362.cards.streams.Marshalls;
-import model.Player;
 
 public class UpdateTextRemote implements Marshalls {
 
