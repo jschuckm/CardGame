@@ -33,11 +33,6 @@ public class AppTest
      */
     public void testApp()
     {
-        String[] args = null;
-        try{
-        Bootstrap.main(args);
-        }catch(Exception e){
-        }
         assertTrue( true );
     }
 }
