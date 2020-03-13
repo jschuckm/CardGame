@@ -3,13 +3,13 @@ package coms362.cards.app;
 import java.util.List;
 import java.util.Random;
 
-import coms362.cards.fiftytwo.Move;
-import coms362.cards.fiftytwo.Rules;
-import coms362.cards.fiftytwo.View;
+import coms362.cards.abstractcomp.Move;
+import coms362.cards.abstractcomp.Player;
+import coms362.cards.abstractcomp.Rules;
+import coms362.cards.abstractcomp.Table;
+import coms362.cards.abstractcomp.View;
 import coms362.cards.streams.InBoundQueue;
 import events.inbound.Event;
-import model.Player;
-import model.Table;
 
 public class PlayController {
 
@@ -29,7 +29,10 @@ public class PlayController {
 		View p1View = views.get(0);
 		try {
 		
-			while ((nextE = inQ.take()) != null){
+			while (
+				! table.isMatchOver()
+				&& (nextE = inQ.take()) != null
+			){
 				Move move = rules
 					.eval(nextE, table, player);
 				table.apply(move);

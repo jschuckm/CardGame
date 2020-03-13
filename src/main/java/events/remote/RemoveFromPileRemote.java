@@ -19,13 +19,9 @@ public class RemoveFromPileRemote implements Marshalls {
 		);
 	}
 
+	public String stringify() {
+		return "RemoveFromPileRemote card = "+c.getId();
+	}
+
 }
 
-/*
-try {
-    remote.sendString("discardPile.addCard(allCards[" + id + "])");
-    remote.sendString("discardPile.render()");
-} catch (Exception e) {
-    e.printStackTrace();
-}
-*/

@@ -5,12 +5,18 @@ import model.Card;
 
 public class ShowCardRemote implements Marshalls {
 
+	private Card c;
+
 	public ShowCardRemote(Card c) {
-		// TODO Auto-generated constructor stub
+		this.c = c;
 	}
 
 	public String marshall() {
 		return "";
+	}
+
+	public String stringify() {
+		return "ShowCardRemote card= " + c.getId();
 	}
 
 }

@@ -4,16 +4,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import coms362.cards.abstractcomp.Player;
+import coms362.cards.abstractcomp.Rules;
+import coms362.cards.abstractcomp.Table;
+import coms362.cards.abstractcomp.View;
 import coms362.cards.fiftytwo.P52PlayerView;
 import coms362.cards.fiftytwo.PickupInitCmd;
 import coms362.cards.fiftytwo.PickupPlayer;
-import coms362.cards.fiftytwo.Rules;
-import coms362.cards.fiftytwo.View;
 import coms362.cards.streams.InBoundQueue;
 import coms362.cards.streams.RemoteTableGateway;
 import events.remote.SetupTable;
-import model.Player;
-import model.Table;
 
 public class MatchController {
 	

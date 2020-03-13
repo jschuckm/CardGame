@@ -25,5 +25,9 @@ public class UpdateRemote implements Marshalls{
 			c.getId()
 		);
     }
+    
+    public String stringify(){
+    	return "UpdateRemoteCard id="+c.getId();
+    }
 	
 }

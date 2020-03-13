@@ -24,4 +24,8 @@ public class SetupTable implements Marshalls {
     	);
 	}
 
+	public String stringify() {
+		return "SetupTable";
+	}
+
 }

@@ -5,9 +5,11 @@ package coms362.cards.fiftytwo;
 
 import java.io.IOException;
 
+import coms362.cards.abstractcomp.Move;
+import coms362.cards.abstractcomp.Player;
+import coms362.cards.abstractcomp.View;
 import coms362.cards.streams.Marshalls;
 import coms362.cards.streams.RemoteTableGateway;
-import model.Player;
 
 /**
  * @author Robert Ward

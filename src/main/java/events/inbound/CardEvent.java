@@ -1,9 +1,9 @@
 package events.inbound;
 
-import coms362.cards.fiftytwo.Move;
-import coms362.cards.fiftytwo.Rules;
-import model.Player;
-import model.Table;
+import coms362.cards.abstractcomp.Move;
+import coms362.cards.abstractcomp.Player;
+import coms362.cards.abstractcomp.Rules;
+import coms362.cards.abstractcomp.Table;
 
 public class CardEvent implements Event {
 	
@@ -12,6 +12,7 @@ public class CardEvent implements Event {
 	public CardEvent(String cardId) {
 		this.id = cardId;
 	}
+	
 	
 	public String getId(){
 		return id;

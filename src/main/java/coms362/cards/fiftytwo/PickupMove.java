@@ -2,14 +2,16 @@ package coms362.cards.fiftytwo;
 
 import java.io.IOException;
 
+import coms362.cards.abstractcomp.Move;
+import coms362.cards.abstractcomp.Player;
+import coms362.cards.abstractcomp.Table;
+import coms362.cards.abstractcomp.View;
 import events.remote.AddToPileRemote;
 import events.remote.HideCardRemote;
 import events.remote.RemoveFromPileRemote;
 import events.remote.ShowCardRemote;
 import events.remote.UpdateTextRemote;
 import model.Card;
-import model.Player;
-import model.Table;
 
 public class PickupMove implements Move {
 	

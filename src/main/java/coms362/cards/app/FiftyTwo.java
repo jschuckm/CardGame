@@ -1,11 +1,11 @@
 package coms362.cards.app;
 
+import coms362.cards.abstractcomp.Rules;
+import coms362.cards.abstractcomp.Table;
 import coms362.cards.fiftytwo.PickupRules;
-import coms362.cards.fiftytwo.Rules;
-import coms362.cards.fiftytwo.TableBase;
 import coms362.cards.streams.InBoundQueue;
 import coms362.cards.streams.RemoteTableGateway;
-import model.Table;
+import model.TableBase;
 
 
 public class FiftyTwo {

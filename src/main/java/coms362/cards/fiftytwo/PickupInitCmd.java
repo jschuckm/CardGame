@@ -3,11 +3,13 @@ package coms362.cards.fiftytwo;
 import java.io.IOException;
 import java.util.Random;
 
+import coms362.cards.abstractcomp.Move;
+import coms362.cards.abstractcomp.Table;
+import coms362.cards.abstractcomp.View;
 import events.remote.CreatePile;
 import model.Card;
 import model.Location;
 import model.Pile;
-import model.Table;
 
 public class PickupInitCmd implements Move {
 

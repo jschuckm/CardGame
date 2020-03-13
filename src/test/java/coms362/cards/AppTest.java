@@ -3,11 +3,11 @@ package coms362.cards;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import coms362.cards.webapp.Bootstrap;
+
 /**
  * Unit test for simple App.
  */
-public class AppTest
+public class AppTest 
     extends TestCase
 {
     /**

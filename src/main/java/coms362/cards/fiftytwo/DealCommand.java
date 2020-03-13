@@ -1,11 +1,13 @@
 package coms362.cards.fiftytwo;
 
+import coms362.cards.abstractcomp.Move;
+import coms362.cards.abstractcomp.Player;
+import coms362.cards.abstractcomp.Table;
+import coms362.cards.abstractcomp.View;
 import events.remote.CreateRemote;
 import events.remote.UpdateRemote;
 import model.Card;
 import model.Pile;
-import model.Player;
-import model.Table;
 
 public class DealCommand implements Move {
 	private Table table;
