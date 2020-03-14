@@ -60,5 +60,6 @@ public class TestDealInput {
 		assertEquals(expectedSig, sValue);
 		
 	}
+	
 
 }
