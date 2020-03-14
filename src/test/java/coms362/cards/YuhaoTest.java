@@ -29,7 +29,7 @@ public class YuhaoTest {
 	static final long expectedSig = 1585141778L;
 	
 	@Test
-	public void YuhaoTest() {
+	public void Ytest() {
 		//fail("Not yet implemented");
 		
 		InBoundQueue inQ2 = new InBoundQueue();
@@ -68,5 +68,23 @@ public class YuhaoTest {
 		assertEquals(expectedSig, sValue);
 				
 	}
-
+	
+	
+	@Test
+	
+	public void matchCheck() {
+		Table table2 = new TableBase();
+		table2.apply(new PickupInitCmd());
+		Player player3 = new PickupPlayer(2);
+		
+		for(int i = 0; i <= 51; i++)
+		{
+			assertEquals(player3.getPlayerNum(), 2); 
+		}
+		
+	}
 }
+
+
+
+
