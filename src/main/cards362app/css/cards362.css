@@ -50,6 +50,22 @@ h1 {
 	-o-border-radius:8px;
 	box-shadow:#111 1px 1px 2px;
 }
+#fixed-plane {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+#rotatable-plane {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+.player-rotated {
+	transform: rotate(90deg);
+}
+.player-upright {
+	transform: rotate(-90deg);
+}
 a:visited {color:blue;}
 
 #deal {
