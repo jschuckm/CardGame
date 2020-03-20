@@ -20,6 +20,35 @@ var cards362 = (function() {
 		cards.init({table: opt.table, cardsUrl: opt.cardsUrl});
 	}
 
+	function createCard(id, suit, rank) {
+		card = new cards.Card(suit, rank, $(opt.rotatablePlane));
+		card.id = id;
+		items[id] = card;
+		return card;
+	}
+
+	function createDeck(id) {
+		deck = new cards.Deck();
+		deck.id = id;
+		items[id] = deck;
+	}
+
+	function createMenu() {
+	}
+
+	function getById(id) {
+		return items[id];
+	}
+
+	function setPlayerRotation(deg) {
+		opt.playerRotation = deg;
+		$('.player-rotated').css('transform', 'rotate('+deg+'deg)');
+	}
+
+	function setPlayerDisabled(disabled) {
+
+	}
+
 	cards.Card.prototype.setFixed = function(fixed) {
 		if (fixed) {
 			this.el.detach().appendTo($(opt.fixedPlane))
@@ -33,6 +62,14 @@ var cards362 = (function() {
 			this.el.classList.add('player-upright')
 		} else {
 			this.el.classList.remove('player-upright')
+		}
+	};
+
+	cards.Card.prototype.setFaceUp = function(faceUp) {
+		if (faceUp) {
+			this.showCard();
+		} else {
+			this.hideCard();
 		}
 	};
 
@@ -56,53 +93,15 @@ var cards362 = (function() {
 
 	};
 
-	cards.Deck.prototype.setFixed = setFixed;
-	cards.Deck.prototype.setUpright = setUpright;
-	cards.Deck.prototype.setVisible = setVisible;
-	cards.Hand.prototype.setFixed = setFixed;
-	cards.Hand.prototype.setUpright = setUpright;
-	cards.Hand.prototype.setVisible = setVisible;
-	cards.Pile.prototype.setFixed = setFixed;
-	cards.Pile.prototype.setUpright = setUpright;
-	cards.Pile.prototype.setVisible = setVisible;
-
-	function createCard(id, suit, rank) {
-		card = new cards.Card(suit, rank, $(opt.rotatablePlane));
-		card.id = id;
-		items[id] = card;
-		return card;
-	}
-
-	function createDeck(id) {
-		card = new cards.Deck($(opt.rotatablePlane));
-		card.id = id;
-		items[id] = card;
-	}
-
-	function createMenu() {
-	}
-
-	function getById(id) {
-		return items[id];
-	}
-
-	function setPlayerRotation(deg) {
-		opt.playerRotation = deg;
-		$('.player-rotated').css('transform', 'rotate('+deg+'deg)');
-	}
-
-	function setPlayerDisabled(disabled) {
-
-	}
-
-
 	return {
 		options: opt,
 		init: init,
 		createCard: createCard,
+		createDeck: createDeck,
+		createMenu: createMenu,
 		getById: getById,
 		setPlayerRotation: setPlayerRotation,
-		setPlayerDisabled: setPlayerDisabled,
+		setPlayerDisabled: setPlayerDisabled
 	};
 })();
 
