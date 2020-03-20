@@ -15,5 +15,10 @@ public class EndPlayMove implements Move {
 	public void apply(View view) {	
 		// TODO Auto-generated method stub
 	}
+	
+	@Override	
+	public boolean isMatchEnd(){
+		return true;
+	}
 
 }

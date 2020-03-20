@@ -12,6 +12,9 @@ public class CardSocketCreator implements WebSocketCreator {
     }
 
     public Object createWebSocket(ServletUpgradeRequest arg0, ServletUpgradeResponse arg1) {
-        return new CardSocket(cardSocketListener);
+    	System.out.println("Creating CardSocket, "+arg0.getHttpServletRequest().getRequestURL());
+    	System.out.println("Servlet Params = " + arg0.getServletParameters().toString());
+    	System.out.println("Query String = "+ arg0.getQueryString());
+    	return new CardSocket(cardSocketListener);
     }   
 }

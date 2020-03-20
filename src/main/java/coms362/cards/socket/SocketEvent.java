@@ -20,6 +20,11 @@ public class SocketEvent {
             }
         }
     }
+    
+    public String getName(){
+    	Object eventObj = map.get("event");
+    	return (eventObj == null) ? null: (String ) eventObj;
+    }
 
     public Object get(String key) {
         System.out.println("LOOKING FOR: " + key + " with map " + map);

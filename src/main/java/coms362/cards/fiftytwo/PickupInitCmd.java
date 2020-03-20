@@ -6,6 +6,7 @@ import java.util.Random;
 import coms362.cards.abstractcomp.Move;
 import coms362.cards.abstractcomp.Table;
 import coms362.cards.abstractcomp.View;
+import events.remote.CreateButtonRemote;
 import events.remote.CreatePile;
 import model.Card;
 import model.Location;
