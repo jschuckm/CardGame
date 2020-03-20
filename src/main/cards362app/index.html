@@ -7,20 +7,21 @@
     <script src="js/jquery-1.7.min.js"></script>
   </head>
   <body>
-    <h1>52 Card Pickup</h1>
+    <h1 id="game-title" >Multi-Game App</h1>
 	
     <img class="preload" src="js/3rdparty/einaregilsson-cards-js/img/cards.png"/>
-    
-    <div id="card-table">
-      <div id="fixed-plane">
-      </div>
-      <div id="rotatable-plane" class="player-rotated">
-      </div>
+
+    <div id="card-table" ">
+      <button id="deal" style="position: absolute; left: 256px; top: 150px; z-index: 3;">DEAL</button>
+      <div id="fixed-plane">
+      </div>
+      <div id="rotatable-plane" class="player-rotated">
+      </div>    
     </div>
 
     <script src="js/3rdparty/einaregilsson-cards-js/cards.js"></script>
     <script src="js/cards362.js"></script>
     <script src="js/cards-socket.js"></script>
-    <!--script src="js/test.js"></script-->
+    <h3 id="current-player" >Host</h3>
   </body>
 </html>
