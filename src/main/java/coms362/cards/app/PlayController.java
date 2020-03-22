@@ -24,9 +24,8 @@ public class PlayController {
 	}
 	
 	public Event play(Table table, 
-			Player player, List<View> views){
+			Player player, ViewFacade views){
 		Event nextE = null;
-		View p1View = views.get(0);
 		try {
 		
 			while (
@@ -35,15 +34,16 @@ public class PlayController {
 			){
 				Move move = rules
 					.eval(nextE, table, player);
-				table.apply(move);
-				p1View.apply(move);
+				move.apply(table);
+				move.apply(views);
 				if (move.isMatchEnd()){
+					System.err.println("Terminating on MatchEnd "+move);
 					break;
 				}
 			}
 		} catch (Exception e){
 			System.err.println("Play terminated on exception: "+e.getMessage());
-
+			e.printStackTrace();
 		}
 		return nextE; 
 

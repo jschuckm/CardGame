@@ -4,5 +4,6 @@ public enum PartyRole {
 	player,
 	audience,
 	host,
-	dealer
+	dealer, 
+	unknown
 }

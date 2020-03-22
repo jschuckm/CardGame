@@ -1,6 +1,7 @@
 package coms362.cards.streams;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -37,16 +38,30 @@ public class InBoundQueue extends ArrayBlockingQueue<Event>{
 	
 	@Override
 	public Event take() throws InterruptedException{
+		Event rval = null; 
 		if (! pushBack.isEmpty()){
-			return pushBack.pop();
+			rval = pushBack.pop();
+		} else {
+			rval = super.take();
 		}
-		Event rval = super.take();
 		System.out.println("Taking from queue: "+rval.toString());
 		return rval;
 	}
 	
 	public void pushBack(Event e){
+		System.out.println("Pushing to Q "+e.toString());
 		pushBack.push(e); 
+	}
+	
+	/**
+	 * @param items a list of items to be processed in 
+	 * reverse order. Oldest in the stack will be first 
+	 * out of the queue. 
+	 */
+	public void pushBack(Stack<Event> items){
+		while (items.size() > 0) {
+			pushBack(items.pop());
+		}
 	}
 	
 	@Override

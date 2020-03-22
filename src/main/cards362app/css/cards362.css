@@ -84,6 +84,11 @@ h1 {
 #current-player {
     text-align: center;
 }
+#current-player span {
+	display: inline-block;
+	width: 200px;
+	text-align: center;	
+}
 .player-rotated {
 	transform: rotate(0deg);
 	transform-origin: 50% 50%;

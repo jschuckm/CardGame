@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.util.Random;
 
 import coms362.cards.abstractcomp.Move;
+import coms362.cards.abstractcomp.Player;
 import coms362.cards.abstractcomp.Table;
-import coms362.cards.abstractcomp.View;
+import coms362.cards.app.ViewFacade;
 import events.remote.CreateButtonRemote;
 import events.remote.CreatePile;
 import events.remote.SetBottomPlayerTextRemote;
@@ -16,6 +17,14 @@ import model.Location;
 import model.Pile;
 
 public class PickupInitCmd implements Move {
+	
+	Player p1;
+	Player p2;
+
+	public PickupInitCmd(Player p1, Player p2) {
+		this.p1 = p1;
+		this.p2 = p2;
+	}
 
 	public void apply(Table table){
 		Pile discard = new Pile("discardPile", new Location(500,359));
@@ -41,19 +50,13 @@ public class PickupInitCmd implements Move {
         }
     }
 
-	public void apply(View view) {
-    	try {
-    		view.send(new SetupTable());
-			view.send(new SetGameTitleRemote("52 Card Pickup"));
-			view.send(new SetBottomPlayerTextRemote("Dealer"));
-			view.send(new CreatePile(new Pile("discardPile", new Location(500,359))));			
+	public void apply(ViewFacade view) {
+		view.send(new SetupTable());
+		view.send(new SetGameTitleRemote("52 Card Pickup"));
+		view.send(new SetBottomPlayerTextRemote("Dealer", p1));
+		view.send(new SetBottomPlayerTextRemote("Player", p2));
+		view.send(new CreatePile(new Pile("discardPile", new Location(500,359))));			
 //			view.send(new CreateButtonRemote("reset", "Reset", new Location(500,0), "RestartGame"));
 //			view.send(new CreateButtonRemote("clear", "Clear Table", new Location(500,0), "ClearTable"));
-		} 
-    	catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
-
 }

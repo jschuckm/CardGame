@@ -1,6 +1,7 @@
 package coms362.cards.abstractcomp;
 
 import events.inbound.Event;
+import model.Party;
 
 public interface Rules {
 

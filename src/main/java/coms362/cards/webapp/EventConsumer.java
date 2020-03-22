@@ -2,20 +2,18 @@ package coms362.cards.webapp;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Iterator;
-import java.util.ServiceLoader;
+
+import org.eclipse.jetty.websocket.common.WebSocketSession;
 
 import coms362.cards.socket.CardSocket;
 import coms362.cards.socket.CardSocketListener;
 import coms362.cards.socket.SocketEvent;
 import coms362.cards.streams.InBoundQueue;
 import coms362.cards.streams.RemoteTableGateway;
-import events.inbound.CardEvent;
-import events.inbound.DealEvent;
+import coms362.cards.utilities.QueryParams;
+import events.inbound.ConnectEvent;
 import events.inbound.Event;
-import events.inbound.EventFactory;
 import events.inbound.EventUnmarshallers;
-import events.inbound.GameRestartEvent;
 
 public class EventConsumer implements CardSocketListener {
     private InBoundQueue q; 
@@ -23,12 +21,20 @@ public class EventConsumer implements CardSocketListener {
     private EventUnmarshallers handlers;
 
     public EventConsumer(InBoundQueue q, EventUnmarshallers handlers) {
+    	System.out.println("Creating EventConsumer "+this);
     	this.q = q;
     	this.handlers = handlers;
     }
 
-    public void onConnect() {
+    public void onConnect(WebSocketSession session) {
         System.out.println("onConnect");
+        System.out.println("QueryMap="+session.getRequestURI().getQuery());
+        QueryParams params = new QueryParams(session.getRequestURI().getQuery());
+        params.put("event","ConnectEvent");
+        onReceive(new SocketEvent(params.toMap(), cardSocket.hashCode()));
+        		
+        
+        
     }
 
     public void onReceive(SocketEvent event) {
@@ -39,7 +45,6 @@ public class EventConsumer implements CardSocketListener {
     	//otherwise, drop it on the floor.     	
     }
     
-    // TODO: move to injected Event factory. 
     private Event createEvent(SocketEvent e){
     	Object eventObj = e.get("event");
         if (eventObj == null) {
@@ -82,5 +87,6 @@ public class EventConsumer implements CardSocketListener {
     public void setCardSocket(CardSocket cardSocket) {
         this.cardSocket = cardSocket;
         RemoteTableGateway.getInstance().setSocket(cardSocket.getRemote());
+        RemoteTableGateway.getInstance().registerSocket(""+cardSocket.hashCode(), cardSocket.getRemote());
     }
 }
