@@ -1,7 +1,8 @@
-var wsUri = "ws://localhost:8080/cards362/socket?p=1&happy=true";
+var wsUri = "ws://localhost:8080/cards362/socket";
 var output;
 
 function init() {
+  wsUri += "?" + window.location.href.split("?")[1];
   output = document.getElementById("output");
   testWebSocket();
 }

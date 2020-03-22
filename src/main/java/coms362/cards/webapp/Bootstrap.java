@@ -5,11 +5,13 @@ import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 import coms362.cards.app.GameController;
+import coms362.cards.app.GameFactoryFactory;
 import coms362.cards.fiftytwo.P52GameFactory;
 import coms362.cards.socket.CardSocketCreator;
 import coms362.cards.socket.ServletContextHolder;
 import coms362.cards.streams.InBoundQueue;
 import coms362.cards.streams.RemoteTableGateway;
+import events.inbound.ConnectEvent;
 import events.inbound.EventUnmarshallers;
 
 /**
@@ -34,6 +36,7 @@ public class Bootstrap {
 
     	Bootstrap cardApp = new Bootstrap();
     	
+    	
         
         try {
             cardApp.configWebapps(webappConfigs);
@@ -45,10 +48,16 @@ public class Bootstrap {
             System.err.println("ERROR starting app server");
             e.printStackTrace();
         }
-    }
+
+	}
     
     public Bootstrap(){
-    	
+		registerGameRules();
+	}
+	
+	private void registerGameRules(){
+		EventUnmarshallers handlers = EventUnmarshallers.getInstance();
+		handlers.registerHandler(ConnectEvent.kId, (Class) ConnectEvent.class);    	
     }
     
     public void startServer() throws Exception{
@@ -57,7 +66,7 @@ public class Bootstrap {
 
     public void startApp() throws Exception {
         syncWithGateway();
-        GameController app = new GameController(asyncQ, RemoteTableGateway.getInstance(), new P52GameFactory());
+        GameController app = new GameController(asyncQ, RemoteTableGateway.getInstance(), new GameFactoryFactory());
         app.run();
         System.out.println("Application Thread exiting");
         app.notifyAll();

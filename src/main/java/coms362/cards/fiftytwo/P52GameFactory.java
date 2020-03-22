@@ -5,10 +5,12 @@ import coms362.cards.abstractcomp.Player;
 import coms362.cards.abstractcomp.Rules;
 import coms362.cards.abstractcomp.Table;
 import coms362.cards.abstractcomp.View;
+import coms362.cards.abstractcomp.ViewFactory;
 import coms362.cards.streams.RemoteTableGateway;
+import model.PlayerFactory;
 import model.TableBase;
 
-public class P52GameFactory implements GameFactory {
+public class P52GameFactory implements GameFactory, PlayerFactory, ViewFactory {
 
 	@Override
 	public Rules createRules() {
@@ -17,17 +19,22 @@ public class P52GameFactory implements GameFactory {
 
 	@Override
 	public Table createTable() {
-		return new TableBase();
+		return new TableBase(this);
 	}
 
 	@Override
-	public View createView(PartyRole role, int num, RemoteTableGateway gw ) {
-		return new P52PlayerView(num, gw);
+	public View createView(PartyRole role, Integer num, String socketId, RemoteTableGateway gw ) {
+		return new P52PlayerView(num, socketId, gw);
 	}
 
 	@Override
-	public Player createPlayer( PartyRole role, int num ) {
-		return new PickupPlayer(num);
+	public Player createPlayer( Integer position, String socketId) {
+		return new PickupPlayer(position, socketId);
+	}
+
+	@Override
+	public PlayerFactory createPlayerFactory() {
+		return this;
 	}
 
 }

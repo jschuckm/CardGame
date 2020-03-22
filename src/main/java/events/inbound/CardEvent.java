@@ -12,13 +12,15 @@ public class CardEvent implements Event, EventFactory {
 	public static final String kId = "cardevent";
 		
 	public static Event createEvent(SocketEvent sktEvent){
-		return new CardEvent( sktEvent.get("id").toString());		
+		return new CardEvent( sktEvent.get("id").toString(), ""+sktEvent.getSocketId());		
 	}
 	
 	private String id;
+	private String socketId;
 	
-	public CardEvent(String cardId) {
+	public CardEvent(String cardId, String socketId) {
 		this.id = cardId;
+		this.socketId = socketId;
 	}	
 	
 	public String getId(){
@@ -27,7 +29,8 @@ public class CardEvent implements Event, EventFactory {
 
 	@Override
 	public Move dispatch(RulesDispatch rules, Table table, Player player) {
-		return rules.apply(this, table, player);
+		Player source = table.lookupPlayer(this.socketId);
+		return rules.apply(this, table, source);
 	}
 
 }

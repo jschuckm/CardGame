@@ -10,6 +10,7 @@ import coms362.cards.abstractcomp.Player;
 import coms362.cards.abstractcomp.Rules;
 import coms362.cards.abstractcomp.Table;
 import coms362.cards.abstractcomp.View;
+import coms362.cards.abstractcomp.ViewFactory;
 import coms362.cards.fiftytwo.P52PlayerView;
 import coms362.cards.fiftytwo.PartyRole;
 import coms362.cards.fiftytwo.PickupInitCmd;
@@ -20,12 +21,12 @@ import events.inbound.Event;
 import events.inbound.InitGameEvent;
 import events.remote.SetGameTitleRemote;
 import events.remote.SetupTable;
+import model.Party;
 
 public class MatchController {
 	
 	private RemoteTableGateway remote;
-	private List<View> views = 
-			new ArrayList<View>();
+	private ViewFacade views; // empty
 	private Table table;
 	private Rules rules;
 	private InBoundQueue inQ;
@@ -43,25 +44,36 @@ public class MatchController {
 		this.rules = rules;	
 		this.remote = remote;
 		this.factory = factory;
+		this.views = new ViewFacade((ViewFactory) factory);
 	}
 
 	public void start(){
 		//this is match setup ... it depends on which game
 		//was selected. We initialize for a new match of the
 		//already selected game
-			View  p1View = factory.createView(PartyRole.player, 1, remote);
-			views.add(p1View); // might be more or fewer views each match
-			Player player = factory.createPlayer(PartyRole.player, 1); //ditto for players
+		
+		Event e = null;
+		while (! table.partiesReady()){
+			try {
+			e = inQ.take();
+			Move cmd = rules.eval(e, table, table.getCurrentPlayer()  );
+			cmd.apply(table);
+			cmd.apply(views);
+			} catch (ExitTestException ex){
+				return;
+			} catch (Exception ex){
+				System.out.println("Match Controller exception "+ex.getMessage());
+				System.out.println(" ... event = "+ e.toString());
+			}
+		}
 	
-			Event terminal = null; 
-			do {// initialize the local model for Pu52 match
-				Move initCmd = rules.eval(new InitGameEvent(), table, player);
-				table.apply(initCmd);
-				p1View.apply(initCmd);
-				
-				PlayController mainloop = new PlayController(inQ, rules);
-				terminal = mainloop.play(table, player, views);
-			} while (terminal != null);
+		Move initCmd = rules.eval(new InitGameEvent(), table, null);
+		initCmd.apply(table);
+		initCmd.apply(views);
+		
+		PlayController mainloop = new PlayController(inQ, rules);
+		mainloop.play(table, table.getCurrentPlayer(), views);
+
 			
 	}
 }

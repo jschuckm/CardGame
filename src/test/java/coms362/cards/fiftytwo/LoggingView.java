@@ -16,10 +16,6 @@ implements View, TestLogger
 	public List<String> log 
 		= new ArrayList<String>();
 	
-	public void apply(Move move) {
-		move.apply(this);
-		}
-
 	public void send(Marshalls event) 
 			throws IOException 
 	{
@@ -39,8 +35,7 @@ implements View, TestLogger
 	}
 
 	public void log(String msg) {
-		log.add(msg);
-		
+		log.add(msg);		
 	}
 
 }

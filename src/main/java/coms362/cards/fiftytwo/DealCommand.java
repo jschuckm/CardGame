@@ -4,6 +4,7 @@ import coms362.cards.abstractcomp.Move;
 import coms362.cards.abstractcomp.Player;
 import coms362.cards.abstractcomp.Table;
 import coms362.cards.abstractcomp.View;
+import coms362.cards.app.ViewFacade;
 import events.remote.CreateRemote;
 import events.remote.UpdateRemote;
 import model.Card;
@@ -23,7 +24,7 @@ public class DealCommand implements Move {
 		
 	}
 	
-	public void apply(View view) {
+	public void apply(ViewFacade views) {
 
         try {
         	Pile local = table.getPile("discardPile");
@@ -32,8 +33,8 @@ public class DealCommand implements Move {
         	}
             for (Card c : local.cards.values()) {
             	String outVal="";
-            	view.send(new CreateRemote(c));
-            	view.send(new UpdateRemote(c));
+            	views.send(new CreateRemote(c));
+            	views.send(new UpdateRemote(c));
                 System.out.println(outVal);	            
 	        }
         }catch (Exception e) {

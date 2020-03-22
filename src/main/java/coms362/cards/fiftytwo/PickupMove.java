@@ -5,12 +5,12 @@ import java.io.IOException;
 import coms362.cards.abstractcomp.Move;
 import coms362.cards.abstractcomp.Player;
 import coms362.cards.abstractcomp.Table;
-import coms362.cards.abstractcomp.View;
+import coms362.cards.app.ViewFacade;
 import events.remote.AddToPileRemote;
 import events.remote.HideCardRemote;
 import events.remote.RemoveFromPileRemote;
 import events.remote.ShowCardRemote;
-import events.remote.UpdateTextRemote;
+import events.remote.ShowPlayerScore;
 import model.Card;
 
 public class PickupMove implements Move {
@@ -29,19 +29,15 @@ public class PickupMove implements Move {
 		table.addToScore(p, 1);
 	}
 	
-	public void apply(View view){
+	public void apply(ViewFacade view){
 
-		try {
-			view.send(new HideCardRemote(c));
-			view.send(new RemoveFromPileRemote("Random", c));
-			view.send(new AddToPileRemote("Tidy", c));
-			view.send(new ShowCardRemote(c));
-			view.send(new UpdateTextRemote(p, 1));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		view.send(new HideCardRemote(c));
+		view.send(new RemoveFromPileRemote("Random", c));
+		view.send(new AddToPileRemote("Tidy", c));
+		view.send(new ShowCardRemote(c));
+		view.send(new ShowPlayerScore(p, null));
 
 	}
+	
 	
 }

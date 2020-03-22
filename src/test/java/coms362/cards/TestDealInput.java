@@ -8,12 +8,15 @@ import java.util.zip.CRC32;
 
 import org.junit.Test;
 
+import coms362.cards.abstractcomp.Move;
 import coms362.cards.abstractcomp.Player;
 import coms362.cards.abstractcomp.Rules;
 import coms362.cards.abstractcomp.Table;
 import coms362.cards.abstractcomp.View;
 import coms362.cards.app.PlayController;
+import coms362.cards.app.ViewFacade;
 import coms362.cards.fiftytwo.LoggingView;
+import coms362.cards.fiftytwo.P52GameFactory;
 import coms362.cards.fiftytwo.PickupInitCmd;
 import coms362.cards.fiftytwo.PickupPlayer;
 import coms362.cards.fiftytwo.PickupRules;
@@ -34,16 +37,18 @@ public class TestDealInput {
 		inQ.add(new DealEvent());
 		inQ.add(new EndPlay()); //artifice to stop the test
 		
-		List<View> views = new ArrayList<View>();
+		ViewFacade views = new ViewFacade(null);
 		//we keep a reference to the concrete type for later
 		LoggingView  p1View = new LoggingView();
 		views.add(p1View); 
 
 		Player player = new PickupPlayer(1); //ditto for players
+		Player p2 = new PickupPlayer(2);
 		
 		// initialize the local model for Pu52 match
-		Table table = new TableBase();
-		table.apply(new PickupInitCmd());
+		Table table = new TableBase(new P52GameFactory());
+		Move move = new PickupInitCmd(player, p2 );
+		move.apply(table);
 		Rules rules = new PickupRules();
 		
 		PlayController mainloop = new PlayController(inQ, rules);
