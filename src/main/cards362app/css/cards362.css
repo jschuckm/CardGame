@@ -68,21 +68,21 @@ h1 {
 	/*transform: rotate3d(-1, 0.5, 1, 80deg);*/
 }
 #fixed-plane {
-	position: absolute;
+	position: relative;
 	left: 0px;
 	top: 0px;
 	width: 100%;
 	height: 100%;
 }
 #rotatable-plane {
-	position: absolute;
+	position: relative;
 	left: 0px;
 	top: 0px;
 	width: 100%;
 	height: 100%;
 }
 #current-player {
-    text-align: center;
+	text-align: center;
 }
 #current-player span {
 	display: inline-block;
