@@ -1,36 +1,22 @@
 package events.remote;
 
 import coms362.cards.streams.Marshalls;
-import model.Location;
+import model.Button;
 
 public class CreateButtonRemote implements Marshalls {
-	
-	private String id;
-	private String label;
-	private Location loc;
-	private String evtName;
-	
-	public CreateButtonRemote(String id, String label, Location p, String evtName){
-		this.id = id;
-		this.label = label;
-		loc = p; 
-		this.evtName = evtName;
-	}
+    private Button button;
 
-	public String marshall() {
-		return String.format(""
-			+ "var btn=$('<button>%s</button>')"
-			+ ".prop('id', '%s')"
-			+ ".click(function(){"
-			+ "  doSend(JSON.stringify({event: '%s'}));\n"
-			+ "})\n;"
-			+ "$('#card-table').append(btn);\n",			
-			label, id, evtName
-		);
-	}
+    public CreateButtonRemote(Button button) {
+        this.button = button;
+    }
 
-	public String stringify() {
-		return "CreateButton "+label;
-	}
+    public String marshall() {
+        return String.format("cards362.createButton('%s', '%s', '%s', %d, %d);\n", button.getId(),
+                button.getEvtName(), button.getLabel(), button.getLocation().getX(),
+                button.getLocation().getY());
+    }
 
+    public String stringify() {
+        return "CreateButton " + button.getLabel();
+    }
 }

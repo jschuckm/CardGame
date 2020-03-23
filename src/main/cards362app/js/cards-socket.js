@@ -48,7 +48,3 @@ function cardMouseEvent(ev) {
   doSend(JSON.stringify({event: 'cardevent', 'id': card.id}));
 }
 
-$('#deal').click(function() {
-  doSend(JSON.stringify({event: 'dealevent'}));
-});
-

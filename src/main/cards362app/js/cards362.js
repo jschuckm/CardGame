@@ -33,7 +33,9 @@ var cards362 = (function() {
 		items[id] = deck;
 	}
 
-	function createMenu() {
+	function createButton(id, eventName, label, x, y) {
+		button = new Button(id, eventName, label, x, y);
+		items[id] = button;
 	}
 
 	function getById(id) {
@@ -48,6 +50,31 @@ var cards362 = (function() {
 	function setPlayerDisabled(disabled) {
 
 	}
+
+	function Button(id, eventName, label, x, y) {
+		this.init(id, eventName, label);
+	}
+	
+	Button.prototype = {
+		init: function(id, eventName, label, x, y) {
+			this.id = id;
+			this.eventName = eventName;
+			this.el = $('<button/>').css({
+				width: 100,
+				height: 30,
+				left: x+'px',
+				top: y+'px',
+				position:'absolute',
+			}).data('button', this)
+			.html(label)
+			.click(function() { doSend(JSON.stringify({event: eventName, id: id})); })
+			.appendTo($(opt.fixedPlane));
+		},
+
+		setLocation: function(x, y) {
+			$(this.el).css({left: x, top: y});
+		}
+	}		
 
 	cards.Card.prototype.setFixed = function(fixed) {
 		if (fixed) {
@@ -98,10 +125,10 @@ var cards362 = (function() {
 		init: init,
 		createCard: createCard,
 		createDeck: createDeck,
-		createMenu: createMenu,
+		createButton: createButton,
 		getById: getById,
 		setPlayerRotation: setPlayerRotation,
-		setPlayerDisabled: setPlayerDisabled
+		setPlayerDisabled: setPlayerDisabled,
 	};
 })();
 
