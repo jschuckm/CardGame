@@ -1,28 +1,22 @@
 package events.remote;
 
 import coms362.cards.streams.Marshalls;
-import model.Location;
+import model.Button;
 
 public class CreateButtonRemote implements Marshalls {
-    private String id;
-    private String evtName;
-    private String label;
-    private Location loc;
+    private Button button;
 
-    public CreateButtonRemote(String id, String evtName, String label, Location p) {
-        this.id = id;
-        this.evtName = evtName;
-        this.label = label;
-        loc = p;
+    public CreateButtonRemote(Button button) {
+        this.button = button;
     }
 
     public String marshall() {
-        return String.format("cards362.createButton('%s', '%s', '%s', %d, %d);\n",
-                id, evtName, label, loc.getX(), loc.getY());
+        return String.format("cards362.createButton('%s', '%s', '%s', %d, %d);\n", button.getId(),
+                button.getEvtName(), button.getLabel(), button.getLocation().getX(),
+                button.getLocation().getY());
     }
 
     public String stringify() {
-        return "CreateButton " + label;
+        return "CreateButton " + button.getLabel();
     }
-
 }
