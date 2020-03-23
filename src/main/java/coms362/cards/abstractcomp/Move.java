@@ -5,6 +5,7 @@ import java.util.List;
 import coms362.cards.app.ViewFacade;
 
 public interface Move {
+	
 	public void apply(Table table);
 	
 	default public boolean isMatchEnd(){

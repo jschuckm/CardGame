@@ -55,25 +55,26 @@ public class MatchController {
 		Event e = null;
 		while (! table.partiesReady()){
 			try {
-			e = inQ.take();
+			e = inQ.take(); // we are waiting for/looking for new connections
 			Move cmd = rules.eval(e, table, table.getCurrentPlayer()  );
 			cmd.apply(table);
 			cmd.apply(views);
 			} catch (ExitTestException ex){
 				return;
 			} catch (Exception ex){
+				// TODO: add support for deferring premature game play events? 
 				System.out.println("Match Controller exception "+ex.getMessage());
 				System.out.println(" ... event = "+ e.toString());
 			}
 		}
 	
+		// prime the pump by injecting a generic InitGameEvent()
 		Move initCmd = rules.eval(new InitGameEvent(), table, null);
 		initCmd.apply(table);
 		initCmd.apply(views);
 		
 		PlayController mainloop = new PlayController(inQ, rules);
 		mainloop.play(table, table.getCurrentPlayer(), views);
-
 			
 	}
 }
