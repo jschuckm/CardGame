@@ -1,24 +1,17 @@
 package model;
 
-public class Button {
+public class Button extends PresentationObject {
     private String id;
     private String evtName;
     private String label;
     private Location location;
 
-    public Button(String id, String evtName, String label, Location location) {
-        this.id = id;
+    public Button(String selector, String evtName, String label, Location location)
+    {
+    	super(selector);
         this.evtName = evtName;
         this.label = label;
         this.location = location;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getEvtName() {

@@ -36,6 +36,7 @@ var cards362 = (function() {
 	function createButton(id, eventName, label, x, y) {
 		button = new Button(id, eventName, label, x, y);
 		items[id] = button;
+		console.log(items);
 	}
 
 	function getById(id) {
@@ -73,6 +74,9 @@ var cards362 = (function() {
 
 		setLocation: function(x, y) {
 			$(this.el).css({left: x, top: y});
+		},
+		hide: function() {
+			$(this.el).hide();
 		}
 	}		
 

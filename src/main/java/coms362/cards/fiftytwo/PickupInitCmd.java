@@ -57,7 +57,10 @@ public class PickupInitCmd implements Move {
 		view.send(new SetBottomPlayerTextRemote("Dealer", p1));
 		view.send(new SetBottomPlayerTextRemote("Player", p2));
 		view.send(new CreatePile(new Pile("discardPile", new Location(500,359))));
-		view.send(new CreateButtonRemote(new Button(Integer.toString(getNextId()), DealEvent.kId, "DEAL", new Location(500, 0))));
+		String id = ""; 
+		DealButton dealButton = new DealButton("DEAL", new Location(500, 0));
+		view.register(dealButton); //so we can find it later. 
+		view.send(new CreateButtonRemote(dealButton));
 		//view.send(new CreateButtonRemote(Integer.toString(getNextId()), "reset", "RestartGame", "Reset", new Location(500,0)));
 		//view.send(new CreateButtonRemote(Integer.toString(getNextId()), "clear", "ClearTable", "Clear Table", new Location(500,0)));
 	}

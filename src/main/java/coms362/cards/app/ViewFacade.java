@@ -3,20 +3,25 @@ package coms362.cards.app;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import coms362.cards.abstractcomp.View;
 import coms362.cards.abstractcomp.ViewFactory;
 import coms362.cards.fiftytwo.PartyRole;
 import coms362.cards.streams.Marshalls;
 import coms362.cards.streams.RemoteTableGateway;
+import model.PresentationObject;
 
 public class ViewFacade {
 	
 	private ViewFactory factory; 
 	private List<View> views = new ArrayList<View>();
-
+	private Map<String, String> remoteIdLookup = new HashMap<String, String>();
+	private int serialId = 0; 
+	
 	public ViewFacade(ViewFactory factory) {
 		this.factory = factory;
 	}
@@ -53,5 +58,13 @@ public class ViewFacade {
 		views.add(view);		
 	}
 
-	
+	public void register(PresentationObject item) {
+		String rval = ""; 
+		remoteIdLookup.put(item.selector, rval = Integer.toString( ++serialId));
+		item.setId(rval);
+	}
+
+	public String getRemoteId(String selector){
+		return remoteIdLookup.get(selector);
+	}
 }

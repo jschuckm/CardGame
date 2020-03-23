@@ -27,6 +27,8 @@ public class DealCommand implements Move {
 	public void apply(ViewFacade views) {
 
         try {
+        	String remoteId = views.getRemoteId(DealButton.kSelector);
+        	views.send(new HideButtonRemote(remoteId));
         	Pile local = table.getPile("discardPile");
         	if (local == null) {
         		return;
