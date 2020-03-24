@@ -8,6 +8,7 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
+import org.eclipse.jetty.websocket.common.WebSocketSession;
 
 import coms362.cards.streams.RemoteTableGateway;
 
@@ -20,6 +21,7 @@ public class CardSocket {
     public CardSocket(CardSocketListener cardSocketListener) {
         this.cardSocketListener = cardSocketListener;
         cardSocketListener.setCardSocket(this);
+        System.out.println("Creating CardSocket = "+this);
     }
     
     public RemoteEndpoint getRemote() {
@@ -35,9 +37,12 @@ public class CardSocket {
     public void onConnect(Session session) {
         this.session = session;
         this.remote = session.getRemote();
+        // TODO: move this to cardSocketListener.
         System.out.println("Setting remote endpoint");
         RemoteTableGateway.getInstance().setSocket(this.remote);
-        cardSocketListener.onConnect();
+        RemoteTableGateway.getInstance().registerSocket("" + this.hashCode(), this.remote);
+        
+        cardSocketListener.onConnect((WebSocketSession) session);
     }
 
     @OnWebSocketMessage
@@ -48,7 +53,7 @@ public class CardSocket {
             return;
         }
         
-        SocketEvent event = new SocketEvent(message);
+        SocketEvent event = new SocketEvent(message, this.hashCode());
         cardSocketListener.onReceive(event);
 
     }

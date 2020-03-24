@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -14,12 +15,22 @@ public class TableBase implements Table {
 	private Map<Integer, Player> players = new HashMap<Integer, Player>();
 	private Random rng = new Random();
 	private boolean matchOver = false;
+	private Quorum quorum = null; 
+	private Integer currentPlayer = -1;
+	private PlayerFactory playerFactory;
+	private Map<String, Player> playerIndex = new HashMap<String,Player>();
+	
+	public TableBase(PlayerFactory pFactory){
+		playerFactory = pFactory;
+	}
+	
 	public void addPile(Pile pile) {
 		piles.put(pile.getName(), pile);
 	}
 
 	public void addPlayer(Player p) {
 		players.put(p.getPlayerNum(), p);
+		playerIndex.put(p.getSocketId(), p);
 	}
 
 	public void apply(Move move) {
@@ -45,6 +56,7 @@ public class TableBase implements Table {
 	}
 
 	public int addToScore(Player p, int i) {
+		System.out.println("Table: addToScore p = "+p);
 		Player playn = players.get(p.getPlayerNum());
 		if (playn != null) {
 			return playn.addToScore(i);
@@ -64,6 +76,52 @@ public class TableBase implements Table {
 		matchOver = over;
 		
 	}
+	
+	public Collection<Player> getPlayers(){
+		return players.values();
+	}
 
+	@Override
+	public Party getHost() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean partiesReady() {
+		return quorum != null && quorum.meets(players.size());
+	}
+
+	@Override
+	public Player getCurrentPlayer() {
+		return players.get(currentPlayer);
+	}
+
+	@Override
+	public void setQuorum(Quorum quorum) {
+		this.quorum = quorum;		
+	}
+
+	@Override
+	public Quorum getQuorum() {
+		return quorum;
+	}
+
+	@Override
+	public void createPlayer(Integer position, String socketId) {
+		Player p = playerFactory.createPlayer(position, socketId );
+		players.put(position, p);
+		playerIndex .put(socketId,p);
+	}
+
+	@Override
+	public Player lookupPlayer(String socketId) {
+		return playerIndex.get(socketId);
+	}
+
+	@Override
+	public Player getPlayer(Integer pos) {
+		return players.get(pos);
+	}
 
 }

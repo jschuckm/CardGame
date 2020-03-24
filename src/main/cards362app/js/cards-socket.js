@@ -2,6 +2,7 @@ var wsUri = "ws://localhost:8080/cards362/socket";
 var output;
 
 function init() {
+  wsUri += "?" + window.location.href.split("?")[1];
   output = document.getElementById("output");
   testWebSocket();
 }
@@ -16,6 +17,7 @@ function testWebSocket() {
 
 function onOpen(evt) {
   console.log("CONNECTED");
+  console.log("href=" + window.location.href);
 }
 
 function onClose(evt) {
@@ -45,8 +47,4 @@ function cardMouseEvent(ev) {
   var card = $(this).data('card');
   doSend(JSON.stringify({event: 'cardevent', 'id': card.id}));
 }
-
-$('#deal').click(function() {
-  doSend(JSON.stringify({event: 'dealevent'}));
-});
 

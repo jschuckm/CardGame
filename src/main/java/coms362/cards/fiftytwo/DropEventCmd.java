@@ -2,7 +2,7 @@ package coms362.cards.fiftytwo;
 
 import coms362.cards.abstractcomp.Move;
 import coms362.cards.abstractcomp.Table;
-import coms362.cards.abstractcomp.View;
+import coms362.cards.app.ViewFacade;
 
 public class DropEventCmd implements Move {
 
@@ -11,7 +11,7 @@ public class DropEventCmd implements Move {
 		
 	}
 
-	public void apply(View view) {
+	public void apply(ViewFacade view) {
 		
 		
 	}

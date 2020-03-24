@@ -4,11 +4,15 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-import coms362.cards.app.FiftyTwo;
+import coms362.cards.app.GameController;
+import coms362.cards.app.GameFactoryFactory;
+import coms362.cards.fiftytwo.P52GameFactory;
 import coms362.cards.socket.CardSocketCreator;
 import coms362.cards.socket.ServletContextHolder;
 import coms362.cards.streams.InBoundQueue;
 import coms362.cards.streams.RemoteTableGateway;
+import events.inbound.ConnectEvent;
+import events.inbound.EventUnmarshallers;
 
 /**
  * bring up the 
@@ -16,7 +20,10 @@ import coms362.cards.streams.RemoteTableGateway;
 public class Bootstrap {
 	// TODO: do these, especially the queue, need to be static? 
 	private static InBoundQueue asyncQ = new InBoundQueue();
-	private static CardSocketCreator socketCreator = new CardSocketCreator(new EventConsumer(asyncQ) );
+	private static EventUnmarshallers eventHandlers = EventUnmarshallers.getInstance();
+	// even though eventHandlers is a singleton, we need to pass a ref into the EventConsumer because, events
+	// are received in the context of a different class loader from the cardApp logic. 
+	private static CardSocketCreator socketCreator = new CardSocketCreator(new EventConsumer(asyncQ, eventHandlers) );
 	private static ServletContextHolder context = new ServletContextHolder(socketCreator, "/socket");
     private static WebappConfig cardsConfig = new WebappConfig("src/main/cards362app", "/cards362",
             "src/main/webdefault/WEB-INF/webdefault.xml", context
@@ -24,11 +31,58 @@ public class Bootstrap {
     private static WebappConfig webappConfigs[] = {cardsConfig};
     private Server server;
 
-    public Bootstrap() {
-        server = new Server(8080);
+
+    public static void main(String[] args) throws Exception {
+
+    	Bootstrap cardApp = new Bootstrap();
+    	
+    	
+        
+        try {
+            cardApp.configWebapps(webappConfigs);
+            cardApp.startServer();
+            System.out.println("Server Started");
+            cardApp.startApp(); //UI start
+                       
+        } catch (Exception e) {
+            System.err.println("ERROR starting app server");
+            e.printStackTrace();
+        }
+
+	}
+    
+    public Bootstrap(){
+		registerGameRules();
+	}
+	
+	private void registerGameRules(){
+		EventUnmarshallers handlers = EventUnmarshallers.getInstance();
+		handlers.registerHandler(ConnectEvent.kId, (Class) ConnectEvent.class);    	
+    }
+    
+    public void startServer() throws Exception{
+        server.start();
     }
 
-    public void configWebapps(WebappConfig webappConfigs[]) {
+    public void startApp() throws Exception {
+        syncWithGateway();
+        GameController app = new GameController(asyncQ, RemoteTableGateway.getInstance(), new GameFactoryFactory());
+        app.run();
+        System.out.println("Application Thread exiting");
+        app.notifyAll();
+        server.join();
+    }
+    
+    public void syncWithGateway() throws InterruptedException{
+        int i = 300;
+        while (! RemoteTableGateway.getInstance().isReady() && i-- > 0){
+        	Thread.sleep(1000);
+        }    	
+    }
+    
+    public void configWebapps(WebappConfig webappConfigs[]) throws Exception {
+        server = new Server(8080);
+
         HandlerCollection handlers = new HandlerCollection();
         for (WebappConfig config : webappConfigs) {
             configWebapp(config, handlers);
@@ -36,25 +90,6 @@ public class Bootstrap {
         server.setHandler(handlers);
     }
 
-
-    public void start() throws Exception {
-        server.start();
-        System.out.println("Server Started");
-        int i = 300;
-        while (! RemoteTableGateway.getInstance().isReady() && i-- > 0){
-        	Thread.sleep(1000);
-        }
-        
-        FiftyTwo app = new FiftyTwo(asyncQ, RemoteTableGateway.getInstance());
-        app.run();
-        
-        System.out.println("Application Started");
- 
-        app.notifyAll();
-        server.join();
-
-        System.out.println("Application Thread exiting");
-    }
 
     private void configWebapp(WebappConfig config, HandlerCollection handlers) {
         WebAppContext webapp = new WebAppContext();
@@ -66,17 +101,4 @@ public class Bootstrap {
         handlers.addHandler(webapp);
     }
 
-    public static void main(String[] args) throws Exception {
-        Bootstrap uiHandler = new Bootstrap();
-
-        uiHandler.configWebapps(webappConfigs);
-        
-        try {
-            uiHandler.start(); //UI start
-            
-        } catch (Exception e) {
-            System.err.println("ERROR starting app server");
-            e.printStackTrace();
-        }
-    }
 }

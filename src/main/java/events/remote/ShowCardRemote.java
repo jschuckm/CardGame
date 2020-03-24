@@ -12,7 +12,7 @@ public class ShowCardRemote implements Marshalls {
 	}
 
 	public String marshall() {
-		return "";
+		return String.format("allCards[%d].showCard();", c.getId());
 	}
 
 	public String stringify() {
