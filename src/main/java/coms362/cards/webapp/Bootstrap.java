@@ -69,7 +69,10 @@ public class Bootstrap {
         GameController app = new GameController(asyncQ, RemoteTableGateway.getInstance(), new GameFactoryFactory());
         app.run();
         System.out.println("Application Thread exiting");
-        app.notifyAll();
+        synchronized(app){
+        	app.notifyAll();
+        }
+        server.stop();
         server.join();
     }
     

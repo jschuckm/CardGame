@@ -3,9 +3,10 @@ package coms362.cards.app;
 import coms362.cards.streams.Marshalls;
 
 public class SystemStatus implements Marshalls {
+	private String message;
 
 	public SystemStatus(String msg) {
-		// TODO Auto-generated constructor stub
+		this.message = msg;
 	}
 
 	@Override
@@ -16,8 +17,7 @@ public class SystemStatus implements Marshalls {
 
 	@Override
 	public String stringify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "SystemStatus "+message;
 	}
 
 }

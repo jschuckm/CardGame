@@ -23,8 +23,8 @@ public class ShowPlayerScore implements Marshalls, FilterOnOwner {
 
 	@Override
 	public String stringify() {
-		// TODO Auto-generated method stub
-		return null;
+		return String.format("ShowPlayerScore %d %d", 
+				p.getPlayerNum(), p.getScore());
 	}
 
 	@Override

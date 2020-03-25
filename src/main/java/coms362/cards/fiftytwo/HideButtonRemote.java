@@ -17,8 +17,7 @@ public class HideButtonRemote implements Marshalls {
 
 	@Override
 	public String stringify() {
-		// TODO Auto-generated method stub
-		return null;
+		return String.format("HideButtonRemote");
 	}
 
 }

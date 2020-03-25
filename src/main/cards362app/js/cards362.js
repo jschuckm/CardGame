@@ -53,7 +53,7 @@ var cards362 = (function() {
 	}
 
 	function Button(id, eventName, label, x, y) {
-		this.init(id, eventName, label);
+		this.init(id, eventName, label, x, y);
 	}
 	
 	Button.prototype = {
