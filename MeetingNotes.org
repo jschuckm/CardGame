@@ -26,3 +26,22 @@
 * Merge Master and Updated. 
 ** DONE Add the example test that is in it.
    CLOSED: [2020-03-12 Thu 12:41]
+* 3/14/2020 Pi Day Meeting. 
+** Attendance 
+   Jacob
+   Jared
+   Daksh
+   Hennry
+** Test cases.
+   Still waiting on 
+   Jared Schuckman
+   Jay 
+** Diagrams
+   We will be using Lucide chart. 
+   Completed during meeting.
+** Games we will propose.
+   War
+   Hearts 
+   Eucher
+   Alternative option poker
+
