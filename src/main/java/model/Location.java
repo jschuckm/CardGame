@@ -1,5 +1,14 @@
 package model;
 
+/**
+ * A Table-relative position in the View. 
+ * 
+ * All position information in move objects should 
+ * be encoded in this type to be compatible with future view operations. 
+ * 
+ * @author Robert Ward
+ *
+ */
 public class Location {
 	
 	int x = 0; 

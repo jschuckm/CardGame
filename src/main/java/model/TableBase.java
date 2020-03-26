@@ -9,6 +9,15 @@ import coms362.cards.abstractcomp.Move;
 import coms362.cards.abstractcomp.Player;
 import coms362.cards.abstractcomp.Table;
 
+/**
+ * The game-independent portion of the game state. 
+ * New state and operations should be added by subclassing this base or 
+ * by otherwise creating a game-specific replacement. Changing the api or 
+ * behavior of this class is apt to break other games. 
+ * 
+ * @author Robert Ward
+ *
+ */
 public class TableBase implements Table {
 	
 	private Map<String,Pile> piles = new HashMap<String,Pile>();

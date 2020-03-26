@@ -54,8 +54,8 @@ public class InBoundQueue extends ArrayBlockingQueue<Event>{
 	}
 	
 	/**
-	 * @param items a list of items to be processed in 
-	 * reverse order. Oldest in the stack will be first 
+	 * @param items - a list of items to be processed in 
+	 * reverse order. Oldest in the items stack will be first 
 	 * out of the queue. 
 	 */
 	public void pushBack(Stack<Event> items){

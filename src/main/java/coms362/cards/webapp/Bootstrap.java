@@ -15,9 +15,15 @@ import events.inbound.ConnectEvent;
 import events.inbound.EventUnmarshallers;
 
 /**
- * bring up the 
+ * This class is responsible for launching the embedded webserver, 
+ * and setting up resources the webserver and the main app will require. 
+ * 
+ * Aside from possibly adding an event to registerGameRules, students should
+ * not normally need to change any of this code. 
+ * 
  */
 public class Bootstrap {
+	
 	// TODO: do these, especially the queue, need to be static? 
 	private static InBoundQueue asyncQ = new InBoundQueue();
 	private static EventUnmarshallers eventHandlers = EventUnmarshallers.getInstance();

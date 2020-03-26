@@ -1,7 +1,17 @@
 package model;
 
+/**
+ * This holds application state needed during that portion of 
+ * application setup that precedes the launch of 
+ *
+ * @author Robert Ward
+ *
+ */
 public class Game {
 	
+	/**
+	 * whether a supported game has been selected. 
+	 */
 	boolean isSelected = false;
 	String selected = ""; 
 
@@ -19,7 +29,6 @@ public class Game {
 	}
 
 	public boolean partiesReady() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

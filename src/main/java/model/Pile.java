@@ -2,7 +2,13 @@ package model;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * A pile is a slight generalization of the common concept "deck". 
+ * Piles are just collections of cards that share a nominal position
+ * in the view. . 
+ * 
+ *
+ */
 public class Pile {
 
 	public String name;

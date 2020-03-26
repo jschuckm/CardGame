@@ -12,6 +12,11 @@ import coms362.cards.socket.SocketEvent;
 import model.Game;
 import model.Quorum;
 
+/**
+ * An external (inbound) evend. This event is Synthesized by the receiving webSocket
+ * when a new connection is detected. 
+ * 
+ */
 public class ConnectEvent implements SysEvent, Event {
 	
 	public static final String kId = "ConnectEvent";

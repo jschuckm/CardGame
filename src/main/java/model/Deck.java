@@ -6,4 +6,6 @@ public class Deck {
 	//orientation
 	//id
 	//remote varName
+	//shuffle
+	
 }

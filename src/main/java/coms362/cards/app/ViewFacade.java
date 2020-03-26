@@ -15,6 +15,20 @@ import coms362.cards.streams.Marshalls;
 import coms362.cards.streams.RemoteTableGateway;
 import model.PresentationObject;
 
+/**
+ * 
+ * The current presentation state. Also a container for Views -- which function as
+ * filters (in the pipes and filters sense) in the flow of commands to the remote gateway. 
+ * 
+ * Any information about the presentation which needs to be saved to enable 
+ * future operations on dynamically created UI elements 
+ * should be saved here. 
+ * 
+ * At present the view include only primitive support for command filtering. 
+ * 
+ * @author Robert Ward
+ *
+ */
 public class ViewFacade {
 	
 	private ViewFactory factory; 

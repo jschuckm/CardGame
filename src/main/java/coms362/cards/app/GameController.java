@@ -136,6 +136,7 @@ public class GameController
 			}
 		} else {
 			// we need to inform the alleged host now
+			System.out.format("GameController. SelectGame : %s is not a supported game.", selected );
 			inQ.pushBack(new InvalidGameSelection(selected));
 		}			
 		

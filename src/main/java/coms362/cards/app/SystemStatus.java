@@ -11,8 +11,8 @@ public class SystemStatus implements Marshalls {
 
 	@Override
 	public String marshall() {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO: post message to browser (status line or popup?)
+		return "";
 	}
 
 	@Override

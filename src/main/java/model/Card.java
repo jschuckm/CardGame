@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * @author Robert Ward
+ *
+ */
+
+// TODO: replace x,y with Location object. 
 public class Card {
 
 	public static final String suits[] = {"h", "s", "d", "c"};

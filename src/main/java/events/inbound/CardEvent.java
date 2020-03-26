@@ -7,6 +7,13 @@ import coms362.cards.abstractcomp.RulesDispatch;
 import coms362.cards.abstractcomp.Table;
 import coms362.cards.socket.SocketEvent;
 
+/**
+ * Indicates a player has clicked on (i.e., selected) a 
+ * particular card. 
+ * 
+ * @author Robert Ward
+ *
+ */
 public class CardEvent implements Event, EventFactory {
 
 	public static final String kId = "cardevent";

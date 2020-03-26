@@ -8,6 +8,18 @@ import coms362.cards.app.GameController;
 import coms362.cards.fiftytwo.PartyRole;
 import model.Game;
 
+/**
+ * This event is normally synthesized whenever a new connection is 
+ * received. Notice that it may be handled differently depending 
+ * upon whether it is dispatched as a SysEvent or just Event. 
+ * 
+ * When dispatched through the SysEvent interface, it will be handled
+ * by game-independent rules in GameController. Match and play controller, 
+ * however,
+ * 
+ * @author Robert Ward
+ *
+ */
 public class NewPartyEvent implements SysEvent, Event {
 
 	public static final String kId = "NewPartyEvent";

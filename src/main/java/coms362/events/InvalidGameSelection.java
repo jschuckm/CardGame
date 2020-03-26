@@ -9,6 +9,14 @@ import events.inbound.Event;
 import events.inbound.SysEvent;
 import model.Game;
 
+/**
+ * Synthesized when an unsupported game is selected.
+ * 
+ * This event is always injected directly into the inbound queue, so 
+ * it does not need to be registered for unmarshalling. 
+ * @author Robert Ward
+ *
+ */
 public class InvalidGameSelection implements Event, SysEvent {
 
 	private String selection; 
@@ -19,13 +27,14 @@ public class InvalidGameSelection implements Event, SysEvent {
 
 	@Override
 	public void accept(GameController handler, Game game) {
-		// TODO Auto-generated method stub
-
+		handler.apply(this,game);
 	}
-
+	
+	
 	@Override
 	public Move dispatch(RulesDispatch rules, Table table, Player player) {
-		// TODO Auto-generated method stub
+		// should never be called from within a running game, so this should
+		// never be invoked. 
 		return null;
 	}
 	
