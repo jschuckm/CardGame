@@ -40,7 +40,7 @@ public class InvalidGameSelection implements Event, SysEvent {
 	
 	public String getMsg(){
 		return String.format(
-			"Invalid Game Selection (%s).%nPlease reconnect and try again.",
+			"Invalid Game Selection (%s).%nPlease restart the app and try again.",
 			selection
 		);
 	}
