@@ -40,4 +40,9 @@ public class P52PlayerView implements View {
 		remote.send(event, socketId);		
 	}
 
+	@Override
+	public int getCameraPosition() {
+		return pos;
+	}
+
 }

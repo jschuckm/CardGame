@@ -33,6 +33,11 @@ public class PickupPlayer implements Player {
 	public int getScore() {
 		return score;
 	}
+	
+	@Override 
+	public String toString(){
+		return String.format("Player: pos=%d, socket=%s, score=%d%n" , playerNum, socketId, score);
+	}
 
 
 }

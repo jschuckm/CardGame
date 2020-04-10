@@ -49,7 +49,7 @@ implements Rules, RulesDispatch {
 		Player p1 = table.getPlayer((Integer) 1);
 		Player p2 = table.getPlayer((Integer) 2); 
 		
-		return new PickupInitCmd( p1, p2);
+		return new PickupInitCmd(table.getPlayerMap());
 	}
 	
 	public Move apply(NewPartyEvent e, Table table, Player player){
@@ -67,12 +67,12 @@ implements Rules, RulesDispatch {
 		
 		Move rval = new DropEventCmd(); 
 		System.out.println("Rules apply ConnectEvent "+e);
-		if (table.getQuorum().meets(table.getPlayers().size()+1)){
+		if (! table.getQuorum().exceeds(table.getPlayers().size()+1)){
 			if (e.getRole() == PartyRole.player){				
 				rval =  new CreatePlayerCmd( e.getPosition(), e.getSocketId());
 			}			
 		}
-		System.out.println("Rules rval = "+rval);
+		System.out.println("PickupRules connectHandler rval = "+rval);
 		return rval;
 	}
 

@@ -1,5 +1,6 @@
 package coms362.cards.fiftytwo;
 
+import java.util.Map;
 import java.util.Random;
 
 import coms362.cards.abstractcomp.Move;
@@ -18,14 +19,11 @@ import model.Location;
 import model.Pile;
 
 public class PickupInitCmd implements Move {
-	private int nextId;
-	Player p1;
-	Player p2;
-
-	public PickupInitCmd(Player p1, Player p2) {
-	    nextId = 0;
-		this.p1 = p1;
-		this.p2 = p2;
+	Map<Integer, Player> players;
+	String title = "52 Card Pickup";
+	
+	public PickupInitCmd(Map<Integer, Player> players) {
+		this.players = players;
 	}
 
 	public void apply(Table table){
@@ -35,7 +33,6 @@ public class PickupInitCmd implements Move {
             for (String suit : Card.suits) {
                 for (int i = 1; i <= 13; i++) {
                     Card card = new Card();
-                    card.setId(nextId++);
                     card.setSuit(suit);
                     card.setNumber(i);
                     card.setX(random.nextInt(200) + 100);
@@ -54,8 +51,12 @@ public class PickupInitCmd implements Move {
 	public void apply(ViewFacade view) {
 		view.send(new SetupTable());
 		view.send(new SetGameTitleRemote("52 Card Pickup"));
-		view.send(new SetBottomPlayerTextRemote("Dealer", p1));
-		view.send(new SetBottomPlayerTextRemote("Player", p2));
+
+		for (Player p : players.values()){
+			String role = (p.getPlayerNum() == 1) ? "Dealer" : "Player "+p.getPlayerNum();
+			view.send(new SetBottomPlayerTextRemote(role, p));
+		}
+
 		view.send(new CreatePile(new Pile("discardPile", new Location(500,359))));
 		String id = ""; 
 		DealButton dealButton = new DealButton("DEAL", new Location(0, 0));
@@ -65,7 +66,4 @@ public class PickupInitCmd implements Move {
 		//view.send(new CreateButtonRemote(Integer.toString(getNextId()), "clear", "ClearTable", "Clear Table", new Location(500,0)));
 	}
 	
-	private int getNextId() {
-	    return nextId++;
-	}
 }

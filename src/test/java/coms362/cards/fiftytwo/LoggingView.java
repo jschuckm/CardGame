@@ -37,5 +37,10 @@ implements View, TestLogger
 	public void log(String msg) {
 		log.add(msg);		
 	}
+	
+	@Override
+	public int getCameraPosition() {
+		return 1;
+	}
 
 }
