@@ -24,7 +24,9 @@ import events.inbound.CardEvent;
 import events.inbound.EndPlay;
 import model.TableBase;
 import model.Pile;
-
+/**
+ * @author Jacob
+ */
 public class JacobTest {
 
     static final long expectedSig = 1427999153L;

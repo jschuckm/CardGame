@@ -23,11 +23,15 @@ import coms362.cards.streams.InBoundQueue;
 import events.inbound.DealEvent;
 import events.inbound.EndPlay;
 import model.TableBase;
-
+/**
+ * 
+ * @author Henry
+ *
+ */
 public class henryTest {
 
 	static final long expectedSig = 4116877291L;
-
+	
 	@Test
 	public void test() {
 		//set up game and match resources to provision play loop
