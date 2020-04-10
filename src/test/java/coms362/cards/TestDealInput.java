@@ -3,7 +3,9 @@ package coms362.cards;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.CRC32;
 
 import org.junit.Test;
@@ -27,7 +29,7 @@ import model.TableBase;
 
 public class TestDealInput {
 
-	static final long expectedSig = 273751680;
+	static final long expectedSig = 2809332483L;
 	
 	@Test	
 	public void test() {
@@ -41,13 +43,15 @@ public class TestDealInput {
 		//we keep a reference to the concrete type for later
 		LoggingView  p1View = new LoggingView();
 		views.add(p1View); 
-
-		Player player = new PickupPlayer(1); //ditto for players
-		Player p2 = new PickupPlayer(2);
+		
+		Map<Integer, Player> players = new HashMap<Integer,Player>();
+		Player player =  new PickupPlayer(1) ;
+		players.put( (Integer) 1, player);
+		players.put( (Integer) 2, new PickupPlayer(2) );
 		
 		// initialize the local model for Pu52 match
 		Table table = new TableBase(new P52GameFactory());
-		Move move = new PickupInitCmd(player, p2 );
+		Move move = new PickupInitCmd(players );
 		move.apply(table);
 		Rules rules = new PickupRules();
 		

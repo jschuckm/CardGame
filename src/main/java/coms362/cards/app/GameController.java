@@ -25,6 +25,7 @@ import events.inbound.SetQuorumEvent;
 import events.inbound.SysEvent;
 import model.Game;
 import model.Party;
+import model.Quorum;
 import model.TableBase;
 
 
@@ -129,11 +130,10 @@ public class GameController
 		String selected = ""; 
 		if ( abstractFactory.isValidSelection(selected = e.getSelection() ) ){
 			game.setSelected(selected);
-			if (e.hasQuorum()){
-				// force to bottom of stack so it is processed 
-				// before other game-specific events. 
-				deferred.insertElementAt(new SetQuorumEvent(e.getQuorum()), 0);
-			}
+			// without other information force to a maximum of 4 
+			// To give the rules a chance to supply game specific limits. 
+			Quorum pushQ = (e.hasQuorum()) ? e.getQuorum() : new Quorum(4,4); 
+			deferred.insertElementAt(new SetQuorumEvent(e.getQuorum()), 0);			
 		} else {
 			// we need to inform the alleged host now
 			System.out.format("GameController. SelectGame : %s is not a supported game.", selected );

@@ -30,7 +30,12 @@ public class Quorum {
 	public Quorum (Map<String, String> params){
 		this(params.get("min"), params.get("max"));
 	}
-		
+
+	public Quorum(int minPlayers, int maxPlayers) {
+		min = minPlayers;
+		max = maxPlayers; 
+	}
+	
 	public Quorum(String minS, String maxS){
 		if (minS != null){
 			min = Integer.valueOf(minS);
@@ -43,6 +48,8 @@ public class Quorum {
 		}
 	}
 	
+
+
 	public boolean isSet(){
 		return (min > 0 || max > 0);
 	}
