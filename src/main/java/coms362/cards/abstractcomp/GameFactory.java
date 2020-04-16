@@ -5,8 +5,8 @@ import coms362.cards.streams.RemoteTableGateway;
 import model.PlayerFactory;
 
 /**
- * The interface through which the various controllers acquire game specific components. 
- * 
+ * The interface through which the various controllers acquire game specific components.
+ *
  * @author RWard
  *
  */

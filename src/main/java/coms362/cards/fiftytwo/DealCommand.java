@@ -13,7 +13,7 @@ import model.Pile;
 public class DealCommand implements Move {
 	private Table table;
 	private Player player;
-			
+
 	public DealCommand(Table table, Player player) {
 		this.table = table;
 		this.player = player;
@@ -21,9 +21,9 @@ public class DealCommand implements Move {
 
 	public void apply(Table table) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public void apply(ViewFacade views) {
 
         try {
@@ -37,11 +37,10 @@ public class DealCommand implements Move {
             	String outVal="";
             	views.send(new CreateRemote(c));
             	views.send(new UpdateRemote(c));
-                System.out.println(outVal);	            
+                System.out.println(outVal);
 	        }
         }catch (Exception e) {
 	            e.printStackTrace();
         }
 	}
 }
-

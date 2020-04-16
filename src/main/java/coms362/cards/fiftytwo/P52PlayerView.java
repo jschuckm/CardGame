@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package coms362.cards.fiftytwo;
 
@@ -21,13 +21,13 @@ public class P52PlayerView implements View {
 	private RemoteTableGateway remote;
 	private Integer pos;
 	private String socketId;
-	
+
 	public P52PlayerView(Integer num, String socketId, RemoteTableGateway remote) {
 		this.remote = remote;
 		this.socketId = socketId;
 		this.pos = num;
 	}
-	
+
 	public void send(Marshalls event) throws IOException {
 		if (event instanceof FilterOnOwner ){
 			if (!((FilterOnOwner)event).isOwnedBy(socketId)){
@@ -37,7 +37,7 @@ public class P52PlayerView implements View {
 		System.out.format("View %s  sending event %s to socket %s%n" ,
 				this, event, socketId
 				);
-		remote.send(event, socketId);		
+		remote.send(event, socketId);
 	}
 
 	@Override

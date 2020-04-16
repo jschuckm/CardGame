@@ -11,7 +11,7 @@ public class CreatePlayerCmd implements Move {
 
 	private Integer position;
 	private String socketId;
-	
+
 
 	public CreatePlayerCmd(Integer position, String socketId) {
 		super();

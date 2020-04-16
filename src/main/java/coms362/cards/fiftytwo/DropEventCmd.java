@@ -7,13 +7,13 @@ import coms362.cards.app.ViewFacade;
 public class DropEventCmd implements Move {
 
 	public void apply(Table table) {
-		
-		
+
+
 	}
 
 	public void apply(ViewFacade view) {
-		
-		
+
+
 	}
 
 }

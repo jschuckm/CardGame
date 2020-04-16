@@ -13,11 +13,11 @@ public class EndPlayMove implements Move {
 
 	}
 
-	public void apply(ViewFacade view) {	
+	public void apply(ViewFacade view) {
 		// TODO Auto-generated method stub
 	}
-	
-	@Override	
+
+	@Override
 	public boolean isMatchEnd(){
 		return true;
 	}

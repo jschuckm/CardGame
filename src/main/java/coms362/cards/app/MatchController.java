@@ -24,24 +24,24 @@ import events.remote.SetupTable;
 import model.Party;
 
 public class MatchController {
-	
+
 	private RemoteTableGateway remote;
 	private ViewFacade views; // empty
 	private Table table;
 	private Rules rules;
 	private InBoundQueue inQ;
 	private GameFactory factory;
-	
+
 	public MatchController(
-			InBoundQueue inQ, 
-			Table table, Rules rules, 
-			RemoteTableGateway remote, 
+			InBoundQueue inQ,
+			Table table, Rules rules,
+			RemoteTableGateway remote,
 			GameFactory factory
 		)
 	{
 		this.inQ = inQ;
 		this.table = table;
-		this.rules = rules;	
+		this.rules = rules;
 		this.remote = remote;
 		this.factory = factory;
 		this.views = new ViewFacade((ViewFactory) factory);
@@ -51,7 +51,7 @@ public class MatchController {
 		//this is match setup ... it depends on which game
 		//was selected. We initialize for a new match of the
 		//already selected game
-		
+
 		Event e = null;
 		while (! table.partiesReady()){
 			try {
@@ -62,19 +62,19 @@ public class MatchController {
 			} catch (ExitTestException ex){
 				return;
 			} catch (Exception ex){
-				// TODO: add support for deferring premature game play events? 
+				// TODO: add support for deferring premature game play events?
 				System.out.println("Match Controller exception "+ex.getMessage());
 				System.out.println(" ... event = "+ e.toString());
 			}
 		}
-	
+
 		// prime the pump by injecting a generic InitGameEvent()
 		Move initCmd = rules.eval(new InitGameEvent(), table, null);
 		initCmd.apply(table);
 		initCmd.apply(views);
-		
+
 		PlayController mainloop = new PlayController(inQ, rules);
 		mainloop.play(table, table.getCurrentPlayer(), views);
-			
+
 	}
 }

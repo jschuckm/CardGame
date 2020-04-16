@@ -7,9 +7,9 @@ import coms362.cards.abstractcomp.RulesDispatch;
 import coms362.cards.abstractcomp.Table;
 
 /**
- * 
+ *
  * Abstract, game-independent handle for all inBound events
- * 
+ *
  * @author Robert
  *
  */

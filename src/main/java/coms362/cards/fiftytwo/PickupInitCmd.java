@@ -21,7 +21,7 @@ import model.Pile;
 public class PickupInitCmd implements Move {
 	Map<Integer, Player> players;
 	String title = "52 Card Pickup";
-	
+
 	public PickupInitCmd(Map<Integer, Player> players) {
 		this.players = players;
 	}
@@ -58,12 +58,12 @@ public class PickupInitCmd implements Move {
 		}
 
 		view.send(new CreatePile(new Pile("discardPile", new Location(500,359))));
-		String id = ""; 
+		String id = "";
 		DealButton dealButton = new DealButton("DEAL", new Location(0, 0));
-		view.register(dealButton); //so we can find it later. 
+		view.register(dealButton); //so we can find it later.
 		view.send(new CreateButtonRemote(dealButton));
 		//view.send(new CreateButtonRemote(Integer.toString(getNextId()), "reset", "RestartGame", "Reset", new Location(500,0)));
 		//view.send(new CreateButtonRemote(Integer.toString(getNextId()), "clear", "ClearTable", "Clear Table", new Location(500,0)));
 	}
-	
+
 }

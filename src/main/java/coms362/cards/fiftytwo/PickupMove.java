@@ -14,21 +14,21 @@ import events.remote.ShowPlayerScore;
 import model.Card;
 
 public class PickupMove implements Move {
-	
+
 	private Card c;
 	private Player p;
-	
+
 	public PickupMove(Card c, Player p){
 		this.c = c;
-		this.p = p; 
+		this.p = p;
 	}
-	
+
 	public void apply(Table table){
 		table.removeFromPile("discardPile", c);
 		table.addToPile("Tidy", c);
 		table.addToScore(p, 1);
 	}
-	
+
 	public void apply(ViewFacade view){
 
 		view.send(new HideCardRemote(c));
@@ -38,6 +38,6 @@ public class PickupMove implements Move {
 		view.send(new ShowPlayerScore(p, null));
 
 	}
-	
-	
+
+
 }
