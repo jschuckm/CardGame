@@ -19,7 +19,7 @@ import model.Pile;
 
 public class SP_PickupInitCmd implements Move{
 	Map<Integer, Player> players;
-	String title = "52 Card Pickup Single Player";
+	String title = "52 Card Solitaire Pickup";
 	
 	
 	public SP_PickupInitCmd(Map<Integer, Player> players) {
@@ -50,7 +50,7 @@ public class SP_PickupInitCmd implements Move{
 
 	public void apply(ViewFacade view) {
 		view.send(new SetupTable());
-		view.send(new SetGameTitleRemote("52 Card Pickup"));
+		view.send(new SetGameTitleRemote("52 Card Solitaire Pickup"));
 
 		for (Player p : players.values()){
 			String role = (p.getPlayerNum() == 1) ? "Dealer" : "Player "+p.getPlayerNum();

@@ -14,7 +14,7 @@ public class GameFactoryFactory {
 	List<String> supported = Arrays.asList(gameIds);
 
 	public GameFactory getGameFactory(String selector){
-		if(selector == gameIds[1]) {
+		if(selector.compareTo(gameIds[1])==0) {
 			return new SP_GameFactory();
 		}
 		return new P52GameFactory();
