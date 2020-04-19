@@ -25,6 +25,10 @@ public class PickupInitCmd implements Move {
 	public PickupInitCmd(Map<Integer, Player> players) {
 		this.players = players;
 	}
+	public PickupInitCmd(Map<Integer, Player> players, String titleIn) {
+		this.players = players;
+		this.title = titleIn;
+	}
 
 	public void apply(Table table){
 		Pile discard = new Pile("discardPile", new Location(500,359));
@@ -50,7 +54,7 @@ public class PickupInitCmd implements Move {
 
 	public void apply(ViewFacade view) {
 		view.send(new SetupTable());
-		view.send(new SetGameTitleRemote("52 Card Pickup"));
+		view.send(new SetGameTitleRemote(title));
 
 		for (Player p : players.values()){
 			String role = (p.getPlayerNum() == 1) ? "Dealer" : "Player "+p.getPlayerNum();

@@ -30,7 +30,7 @@ public class DakshTestIter2 {
         Player player = new PickupPlayer(1);
         Table table = new TableBase(new SP_GameFactory());
         table.addPlayer(player);
-        Move move = new SP_PickupInitCmd(table.getPlayerMap());
+        Move move = new PickupInitCmd(table.getPlayerMap(),"Test Solitaire 52 Card Pickup");
         move.apply(table);
         Pile discardPile = table.getPile("discardPile");
         for(int i = 1; i <= 13; i++) {
