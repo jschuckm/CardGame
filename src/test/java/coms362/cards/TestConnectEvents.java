@@ -7,14 +7,12 @@ import org.junit.Test;
 
 import coms362.cards.abstractcomp.Table;
 import coms362.cards.app.GameController;
-import coms362.cards.app.GameFactoryFactory;
 import coms362.cards.fiftytwo.TestEndpoint;
 import coms362.cards.fiftytwo.TestGFF;
 import coms362.cards.fiftytwo.TestGameFactory;
 import coms362.cards.socket.SocketEvent;
 import coms362.cards.streams.InBoundQueue;
 import coms362.cards.streams.RemoteTableGateway;
-import coms362.cards.test.control.TestLogger;
 import events.inbound.ConnectEvent;
 import events.inbound.DealEvent;
 import events.inbound.EndPlay;
