@@ -27,7 +27,7 @@ import model.TableBase;
 
 public class TestDealInput {
 
-    static final long expectedSig = 903636097L;
+    static final long expectedSig = 2622546099L;
 	
 	@Test	
 	public void test() {

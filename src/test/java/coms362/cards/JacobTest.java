@@ -28,52 +28,6 @@ import model.Pile;
  */
 public class JacobTest {
 
-    static final long expectedSig = 2503129855L;
-
-	@Test
-	public void test() {
-		//set up game and match resources to provision play loop
-		InBoundQueue inQ = new InBoundQueue();
-		//pre-load the input stream with the input for this test
-		Player player = new PickupPlayer(1); //ditto for players
-		inQ.add(new DealEvent());
-		inQ.add(new CardEvent("1","1"));
-		inQ.add(new CardEvent("1","1"));
-		inQ.add(new CardEvent("1","1"));
-		inQ.add(new EndPlay()); //artifice to stop the test
-
-		ViewFacade views = new ViewFacade(null);
-		//we keep a reference to the concrete type for later
-		LoggingView  p1View = new LoggingView();
-		views.add(p1View);
-
-		Player p2 = new PickupPlayer(2);
-
-		// initialize the local model for Pu52 match
-		Table table = new TableBase(new P52GameFactory());
-    table.addPlayer(player);
-    table.addPlayer(p2);
-		Move move = new PickupInitCmd(table.getPlayerMap() );
-		move.apply(table);
-
-		move.apply(table);
-		Rules rules = new PickupRules();
-
-		PlayController mainloop = new PlayController(inQ, rules);
-		mainloop.play(table, player, views);
-
-
-		CRC32 sig = new CRC32();
-		String log = p1View.getLog();
-		System.out.println(log);
-		sig.update(log.getBytes());
-		long sValue = sig.getValue();
-		System.out.println(sValue);
-
-		assertEquals(expectedSig, sValue);
-
-	}
-
     @Test
     public void standerdDeck(){
         Player player = new PickupPlayer(1); //ditto for players
