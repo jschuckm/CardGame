@@ -1,6 +1,5 @@
 package coms362.cards.fiftytwo;
 
-import java.util.Collection;
 
 import coms362.cards.abstractcomp.Move;
 import coms362.cards.abstractcomp.Player;
@@ -18,7 +17,6 @@ import events.inbound.InitGameEvent;
 import events.inbound.NewPartyEvent;
 import events.inbound.SetQuorumEvent;
 import model.Card;
-import model.Party;
 
 public class PickupRules extends RulesDispatchBase
 implements Rules, RulesDispatch {
@@ -46,9 +44,6 @@ implements Rules, RulesDispatch {
 	}
 
 	public Move apply(InitGameEvent e, Table table, Player player){
-		Player p1 = table.getPlayer((Integer) 1);
-		Player p2 = table.getPlayer((Integer) 2);
-
 		return new PickupInitCmd(table.getPlayerMap());
 	}
 
