@@ -15,3 +15,5 @@
 *.zip
 *.tar.gz
 *.rar
+# LaTex files that I exported from emacs org mode(its what allows me to make the pdfs) --Jacob uses these.
+*.tex

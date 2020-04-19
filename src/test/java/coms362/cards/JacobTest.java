@@ -1,0 +1,93 @@
+package coms362.cards;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.zip.CRC32;
+
+import org.junit.Test;
+
+import coms362.cards.abstractcomp.Move;
+import coms362.cards.abstractcomp.Player;
+import coms362.cards.abstractcomp.Rules;
+import coms362.cards.abstractcomp.Table;
+import coms362.cards.abstractcomp.View;
+import coms362.cards.app.PlayController;
+import coms362.cards.app.ViewFacade;
+import coms362.cards.fiftytwo.LoggingView;
+import coms362.cards.fiftytwo.P52GameFactory;
+import coms362.cards.fiftytwo.PickupInitCmd;
+import coms362.cards.fiftytwo.PickupPlayer;
+import coms362.cards.fiftytwo.PickupRules;
+import coms362.cards.streams.InBoundQueue;
+import events.inbound.DealEvent;
+import events.inbound.EndPlay;
+import events.inbound.CardEvent;
+import model.TableBase;
+import model.Pile;
+/**
+ * @author Jacob
+ */
+public class JacobTest {
+
+    static final long expectedSig = 989060758;
+
+	@Test
+	public void test() {
+		//set up game and match resources to provision play loop
+		InBoundQueue inQ = new InBoundQueue();
+		//pre-load the input stream with the input for this test
+		Player player = new PickupPlayer(1); //ditto for players
+		inQ.add(new DealEvent());
+		inQ.add(new CardEvent("1","1"));
+		inQ.add(new CardEvent("1","1"));
+		inQ.add(new CardEvent("1","1"));
+		inQ.add(new EndPlay()); //artifice to stop the test
+
+		ViewFacade views = new ViewFacade(null);
+		//we keep a reference to the concrete type for later
+		LoggingView  p1View = new LoggingView();
+		views.add(p1View);
+
+		Player p2 = new PickupPlayer(2);
+
+		// initialize the local model for Pu52 match
+		Table table = new TableBase(new P52GameFactory());
+    table.addPlayer(player);
+    table.addPlayer(p2);
+		Move move = new PickupInitCmd(player, p2 );
+		move.apply(table);
+
+		move.apply(table);
+		Rules rules = new PickupRules();
+
+		PlayController mainloop = new PlayController(inQ, rules);
+		mainloop.play(table, player, views);
+
+
+		CRC32 sig = new CRC32();
+		String log = p1View.getLog();
+		System.out.println(log);
+		sig.update(log.getBytes());
+		long sValue = sig.getValue();
+		System.out.println(sValue);
+
+		assertEquals(expectedSig, sValue);
+
+	}
+
+    @Test
+    public void standerdDeck(){
+        Player player = new PickupPlayer(1); //ditto for players
+        Player p2 = new PickupPlayer(2);
+        Table table = new TableBase(new P52GameFactory());
+        Move move = new PickupInitCmd(player,p2);
+        move.apply(table);
+
+        Pile discard = table.getPile("discardPile");
+        for(int i=0;i<52;i++)
+        assertTrue(null!=discard.getCard(""+i));
+    }
+
+}

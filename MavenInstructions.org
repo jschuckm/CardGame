@@ -1,0 +1,16 @@
+#+TITLE: Running maven
+#+AUTHOR: Jacob Riesen
+#+OPTIONS: toc:nil
+* Install maven
+  In order for maven to run you need to install it on your computer.
+  I used hombrew install to download my copy.
+  
+* Running maven.
+  The the following terminal commands should be run in the terminal
+  where the current directory is the folder containing the pom.xml
+** compiling for the first time.
+   mvn clean install 
+** Running the project 
+   mvn exec:java
+** Running the tests.
+   mvn test

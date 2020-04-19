@@ -1,0 +1,56 @@
+* TODO Assignment due tomorrow. 
+  SCHEDULED: <2020-03-14 Sat>
+  Can be done graded late if need be since he gave me bad info
+  Probably will not get around to grading until the end of spring break gives us a bit of time. 
+** Iteration one
+*** class diagram
+  Post diagram to canvas writhing canvas group.
+  Use primary abstractions as a rough outline. 
+  Focus more on the overall structure rather then focusing on every method.
+**** Useful if we include an abstract factory. 
+     Use the game controller to select the factory to use. 
+     The factor's will deal with construction.
+*** Also note that this will require multiple view 
+    Publish subscriber pattered recommended  
+** list of games 
+   Email to him or post as canvas group. 
+** Unknown how we will provide with the mentors. 
+   He will reach out and talk about it with the instructors about how this should be done.
+** TODO Test cases. 
+   This is an example 
+   Each persons test case should be separate and have our name in the class.
+   Only tests game state stuff not front end. 
+* Next iteration is probably implementing the abstract factory
+  Make sure that we design with multiple players in mind. 
+  They meet on Monday so he dose not have much information yet.
+* Merge Master and Updated. 
+** DONE Add the example test that is in it.
+   CLOSED: [2020-03-12 Thu 12:41]
+* 3/14/2020 Pi Day Meeting. 
+** Attendance 
+   Jacob
+   Jared
+   Daksh
+   Hennry
+** Test cases.
+   Still waiting on 
+   Jared Schuckman
+   Jay 
+** Diagrams
+   We will be using Lucide chart. 
+   Completed during meeting.
+** Games we will propose.
+   War
+   Hearts 
+   Eucher
+   Alternative option poker
+
+* 3/24/2020 
+** we spect out the deliverables
+** Avaliblility 
+   Most people said they are not really avalible until early next week.
+** Individual Deliverables 
+   This is on you to get done.
+** Group Deliverables
+   We will meet next Wednesday as peoples avaliblity frees up.
+   
