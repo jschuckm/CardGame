@@ -30,13 +30,11 @@ public class YuhaoTest {
     public void checkCard(){
 
 		Card newCard = new Card();
-		//newCard.setId(100);
 		newCard.setX(1);
 		newCard.setY(1);
 		
         assertTrue(1 == newCard.getX());
         assertTrue(1 == newCard.getY());
-        assertTrue(100 == newCard.getId());
     }
 }
 
