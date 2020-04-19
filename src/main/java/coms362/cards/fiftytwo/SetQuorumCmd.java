@@ -10,8 +10,8 @@ import model.Quorum;
 
 public class SetQuorumCmd implements Move {
 
-	private Quorum quorum; 
-	
+	private Quorum quorum;
+
 	public SetQuorumCmd(Quorum quorum) {
 		this.quorum = quorum;
 	}

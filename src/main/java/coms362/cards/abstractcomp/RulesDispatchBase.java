@@ -47,7 +47,7 @@ public class RulesDispatchBase implements RulesDispatch {
 	public Move apply(NewPartyEvent e, Table table, Player player) {
 		throw new RuntimeException("Event not supported " + e.toString());
 	}
-	
+
 	@Override
 	public Move apply(ConnectEvent e, Table table, Player player) {
 		throw new RuntimeException("Event not supported " + e.toString());

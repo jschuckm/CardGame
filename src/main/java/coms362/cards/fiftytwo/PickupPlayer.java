@@ -6,8 +6,8 @@ public class PickupPlayer implements Player {
 
 	private int score = 0;
 	private int playerNum;
-	private String socketId = null; 
-	
+	private String socketId = null;
+
 	public PickupPlayer(int i) {
 		this.playerNum = i;
 	}
@@ -24,7 +24,7 @@ public class PickupPlayer implements Player {
 	public int getPlayerNum() {
 		return playerNum;
 	}
-	
+
 	public String getSocketId(){
 		return socketId;
 	}
@@ -32,6 +32,11 @@ public class PickupPlayer implements Player {
 	@Override
 	public int getScore() {
 		return score;
+	}
+
+	@Override
+	public String toString(){
+		return String.format("Player: pos=%d, socket=%s, score=%d%n" , playerNum, socketId, score);
 	}
 
 

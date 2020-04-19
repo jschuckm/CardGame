@@ -10,29 +10,31 @@ import coms362.cards.abstractcomp.Player;
 import coms362.cards.abstractcomp.Table;
 
 /**
- * The game-independent portion of the game state.
- * New state and operations should be added by subclassing this base or
- * by otherwise creating a game-specific replacement. Changing the api or
- * behavior of this class is apt to break other games.
- *
+ * The game-independent portion of the game state. 
+ * New state and operations should be added by subclassing this base or 
+ * by otherwise creating a game-specific replacement. Changing the api or 
+ * behavior of this class is apt to break other games. 
+ * 
  * @author Robert Ward
  *
  */
 public class TableBase implements Table {
-
+	
 	private Map<String,Pile> piles = new HashMap<String,Pile>();
+	// following is indexed by player position (playernum)
 	private Map<Integer, Player> players = new HashMap<Integer, Player>();
 	private Random rng = new Random();
 	private boolean matchOver = false;
-	private Quorum quorum = null;
+	private Quorum quorum = null; 
 	private Integer currentPlayer = -1;
 	private PlayerFactory playerFactory;
+	// following is indexed by socketId
 	private Map<String, Player> playerIndex = new HashMap<String,Player>();
-
+	
 	public TableBase(PlayerFactory pFactory){
 		playerFactory = pFactory;
 	}
-
+	
 	public void addPile(Pile pile) {
 		piles.put(pile.getName(), pile);
 	}
@@ -83,9 +85,12 @@ public class TableBase implements Table {
 
 	public void setMatchOver(boolean over) {
 		matchOver = over;
-
+		
 	}
-
+	public Map<Integer,Player> getPlayerMap(){
+		return players;
+	}
+	
 	public Collection<Player> getPlayers(){
 		return players.values();
 	}
@@ -108,7 +113,7 @@ public class TableBase implements Table {
 
 	@Override
 	public void setQuorum(Quorum quorum) {
-		this.quorum = quorum;
+		this.quorum = quorum;		
 	}
 
 	@Override
@@ -119,8 +124,8 @@ public class TableBase implements Table {
 	@Override
 	public void createPlayer(Integer position, String socketId) {
 		Player p = playerFactory.createPlayer(position, socketId );
-		players.put(position, p);
-		playerIndex .put(socketId,p);
+		System.out.format("Table.createPlayer pos=%d, hash=%d", position, p.hashCode());
+		addPlayer(p);
 	}
 
 	@Override

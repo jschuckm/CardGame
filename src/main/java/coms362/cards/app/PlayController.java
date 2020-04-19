@@ -13,21 +13,21 @@ import events.inbound.Event;
 
 public class PlayController {
 
-	private InBoundQueue inQ;
+	private InBoundQueue inQ; 
 	private Rules rules;
-
-	public PlayController (InBoundQueue inQ,
+    
+	public PlayController (InBoundQueue inQ, 
 			Rules rules)
 	{
 		this.inQ = inQ;
-		this.rules = rules;
+		this.rules = rules; 
 	}
-
-	public Event play(Table table,
+	
+	public Event play(Table table, 
 			Player player, ViewFacade views){
 		Event nextE = null;
 		try {
-
+		
 			while (
 				! table.isMatchOver()
 				&& (nextE = inQ.take()) != null
@@ -45,7 +45,7 @@ public class PlayController {
 			System.err.println("Play terminated on exception: "+e.getMessage());
 			e.printStackTrace();
 		}
-		return nextE;
+		return nextE; 
 
 	}
 

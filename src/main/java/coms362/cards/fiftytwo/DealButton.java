@@ -10,6 +10,6 @@ public class DealButton extends Button {
 
 	public DealButton(String label, Location location) {
 		super(kSelector, DealEvent.kId, label, location);
-	}	
+	}
 
 }
