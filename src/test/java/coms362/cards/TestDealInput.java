@@ -2,9 +2,8 @@ package coms362.cards;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.zip.CRC32;
 
@@ -14,7 +13,6 @@ import coms362.cards.abstractcomp.Move;
 import coms362.cards.abstractcomp.Player;
 import coms362.cards.abstractcomp.Rules;
 import coms362.cards.abstractcomp.Table;
-import coms362.cards.abstractcomp.View;
 import coms362.cards.app.PlayController;
 import coms362.cards.app.ViewFacade;
 import coms362.cards.fiftytwo.LoggingView;
@@ -29,7 +27,7 @@ import model.TableBase;
 
 public class TestDealInput {
 
-	static final long expectedSig = 2809332483L;
+    static final long expectedSig = 903636097L;
 	
 	@Test	
 	public void test() {
