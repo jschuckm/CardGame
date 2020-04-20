@@ -10,7 +10,6 @@ import coms362.cards.fiftytwo.PickupInitCmd;
 import coms362.cards.fiftytwo.PickupMove;
 import coms362.cards.fiftytwo.PickupPlayer;
 import coms362.cards.fiftytwo.sp.SP_GameFactory;
-import coms362.cards.fiftytwo.sp.SP_PickupInitCmd;
 import model.Card;
 import model.Location;
 
