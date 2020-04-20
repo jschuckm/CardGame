@@ -3,29 +3,13 @@ package coms362.cards;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.zip.CRC32;
 
 import org.junit.Test;
-import coms362.cards.fiftytwo.*;
 import coms362.cards.fiftytwo.P52GameFactory;
-import coms362.cards.abstractcomp.Player;
-import coms362.cards.abstractcomp.Rules;
-import coms362.cards.abstractcomp.Table;
-import coms362.cards.abstractcomp.View;
-import coms362.cards.app.PlayController;
-import coms362.cards.fiftytwo.LoggingView;
-import coms362.cards.fiftytwo.PickupInitCmd;
 import coms362.cards.fiftytwo.PickupPlayer;
-import coms362.cards.fiftytwo.PickupRules;
-import coms362.cards.streams.InBoundQueue;
-import events.inbound.DealEvent;
-import events.inbound.EndPlay;
+import coms362.cards.abstractcomp.Player;
+import coms362.cards.abstractcomp.Table;
 import model.TableBase;
-import model.Card;
-import model.Location;
-import model.Pile;
 
 /**
  * 
@@ -60,7 +44,7 @@ public class henryTest {
 	      }		
 	}
 	
-	
+	//Iteration 2
 	@Test
 	public void catchMatchOver() {
 		Player player = new PickupPlayer(1);
