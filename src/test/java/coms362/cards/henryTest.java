@@ -61,4 +61,19 @@ public class henryTest {
 	}
 	
 	
+	@Test
+	public void catchMatchOver() {
+		Player player = new PickupPlayer(1);
+		Table table = new TableBase(new P52GameFactory());
+	      table.addPlayer(player);
+	      for(int i = 0; i < 51; i++)
+	      {
+	    	  table.addToScore(player, 1);
+				assertTrue(player.getScore() > 0);
+	      }
+	
 	}
+	}
+	
+	
+	
