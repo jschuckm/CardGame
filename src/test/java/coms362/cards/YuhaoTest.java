@@ -3,10 +3,11 @@ package coms362.cards;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import model.Card;
-import model.Location;
+import coms362.cards.fiftytwo.*;
+import coms362.cards.abstractcomp.Player;
+import coms362.cards.abstractcomp.Table;
+import model.*;
 
-import model.Button;
 
 /**
  * 
@@ -36,6 +37,25 @@ public class YuhaoTest {
         assertTrue(1 == newCard.getX());
         assertTrue(1 == newCard.getY());
     }
+	
+	//iteration 2
+	@Test
+	public void checkFiftytwo(){
+
+		Player player = new PickupPlayer(10, "new id");
+		Pile pile = new Pile("new pile", new Location(0,0));
+		Table table = new TableBase(new P52GameFactory());
+	      table.addPile(pile);   
+	      table.addPlayer(player);
+	      for(int i = 0; i < 51; i++)
+	      {   
+	    	  Pile getPile = table.getPile("new pile");
+	    	  assertTrue("new pile" == getPile.getName());
+	    	  Player getPlayer = table.getPlayer(10);
+				assertTrue(getPlayer.getSocketId() == "new id");
+	      }
+		
+	}
 }
 
 
