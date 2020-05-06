@@ -25,7 +25,10 @@ import events.inbound.EndPlay;
 import events.inbound.CardEvent;
 import model.Card;
 import model.TableBase;
-@author Jacob Riesen
+/**
+ * @author Jacob Riesen
+ *
+ */
 public class JacobTestIter2{
     
 	private long expectedSig = 0;
