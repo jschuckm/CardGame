@@ -78,6 +78,8 @@ public class WarInitCmd implements Move{
 
 		view.send(new CreatePile(new Pile("Player 1 FaceDown", new Location(500,359))));
 		view.send(new CreatePile(new Pile("Player 2 FaceDown", new Location(500,100))));
+		view.send(new CreatePile(new Pile("Player 1 FaceUp", new Location(100,150))));
+		view.send(new CreatePile(new Pile("Player 2 FaceUp", new Location(500,150))));
 		String id = "";
 		DealButton dealButton = new DealButton("DEAL", new Location(0, 0));
 		view.register(dealButton); //so we can find it later.
