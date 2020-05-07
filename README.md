@@ -1,5 +1,4 @@
-# cs362Toolkit
-This is a support library for term projects in an object-oriented design class
+This branch is not the branch that has our implementation of war that is in iter3raw. This is just here for history.
 
 URLs
 2 Player PU52MP
